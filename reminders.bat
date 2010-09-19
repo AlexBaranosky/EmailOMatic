@@ -1,0 +1,1 @@
+ruby "C:\Program Files\EmailOMatic\src\run_email_o_matic.rb"
