@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../src/emailer'
-require File.dirname(__FILE__) + '/../src/general/date_extensions'
-require File.dirname(__FILE__) + '/../src/reminder/reminder_email_formatter'
-require File.dirname(__FILE__) + '/../src/reminder/reminder'
 require File.dirname(__FILE__) + '/../src/reminder/reminders'
-require File.dirname(__FILE__) + '/../src/reminder/persistent_email_records'
 require 'date'
 
 class EmailOMatic
