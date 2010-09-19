@@ -1,4 +1,3 @@
-require File.dirname(__FILE__) + '/../src/general/path_making'
 require 'net/smtp'
 require 'smtp_tls'
 

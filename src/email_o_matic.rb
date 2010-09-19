@@ -1,4 +1,3 @@
-require File.dirname(__FILE__) + '/../src/general/path_making'
 require File.dirname(__FILE__) + '/../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../src/emailer'
 require File.dirname(__FILE__) + '/../src/general/date_extensions'

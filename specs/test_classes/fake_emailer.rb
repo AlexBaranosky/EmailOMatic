@@ -1,5 +1,3 @@
-require File.dirname(__FILE__) + '/../../src/general/path_making'
-
 class FakeEmailer
   
   FAKE_EMAIL_OUTPUT = File.dirname(__FILE__) + '/../../resources/fake_email_output.txt'
