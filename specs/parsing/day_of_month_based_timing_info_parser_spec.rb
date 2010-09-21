@@ -6,10 +6,10 @@ describe DayOfMonthBasedTimingInfoParser do
   parser = DayOfMonthBasedTimingInfoParser.new
 
   it 'should parse timing infos out of a day of week based string' do
-    parser.parse('Every 15 of the month').should == ReminderTimingInfo.new(DaysOfMonth.new([15]), [1])
+    parser.parse('Every 15 of the month').should == ReminderTimingInfo.new(DaysOfMonth.new([15]))
   end
 
   it 'should parse multiple timing infos out of a day of week based string' do
-    parser.parse(' Every 15 of the month & Every 22 of the month ').should == ReminderTimingInfo.new(DaysOfMonth.new([15, 22]), [1, 1])
+    parser.parse(' Every 15 of the month & Every 22 of the month ').should == ReminderTimingInfo.new(DaysOfMonth.new([15, 22]))
   end
 end

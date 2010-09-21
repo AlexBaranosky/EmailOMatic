@@ -18,10 +18,6 @@ class ReminderTimingInfoParser
 
   private
 
-  def self.date_based?(sections)
-    !day_of_week_based?(sections) && !day_of_month_based?(sections)
-  end
-
   def self.day_of_week_based?(sections)
     def self.contains_any_day(string)
       Date::DAYS_OF_WEEK.any? { |day| string.include?(day) }
@@ -33,53 +29,56 @@ class ReminderTimingInfoParser
   def self.day_of_month_based?(sections)
     sections.include?('Every')
   end
+
+  def self.date_based?(sections)
+    !day_of_week_based?(sections) && !day_of_month_based?(sections)
+  end
 end
 
 module TimingInfoParser
-  REMINDER_TIMING_INFO_SECTION_DELIMITER = '&'
-
   def parse(timing_info_string)
-    sections = timing_info_string.split(REMINDER_TIMING_INFO_SECTION_DELIMITER)
-    reminder_times, frequencies = sections.map { |it| parse_section(it) }.unzip
-    ReminderTimingInfo.new(reminder_times_converter(reminder_times), frequencies)
+    tokens = timing_info_string.split('&')
+    reminder_times = parse_sections(tokens)
+    ReminderTimingInfo.new(reminder_times)
   end
 end
 
 class DayOfWeekBasedTimingInfoParser
   include TimingInfoParser
 
-  DAYS_OF_WEEK_REGEX = /\s*(Sundays|Mondays|Tuesdays|Wednesdays|Thursdays|Fridays|Saturdays)\s+(\d)*\s*/i
+  def parse_sections(sections)
+    def parse_section(section)
+      section =~ /\s*(Sundays|Mondays|Tuesdays|Wednesdays|Thursdays|Fridays|Saturdays)\s*/i
+      $1.downcase.to_sym
+    end
 
-  def parse_section(section)
-    section =~ DAYS_OF_WEEK_REGEX
-    frequency = $2.nil? ? 1 : $2.to_i
-    [$1.downcase.to_sym, frequency]
+    day_syms = sections.map { |s| parse_section s }
+    DaysOfWeek.new(day_syms)
   end
-
-  def reminder_times_converter(times); DaysOfWeek.new(times) end
 end
 
 class DayOfMonthBasedTimingInfoParser
   include TimingInfoParser
 
-  MONTH_REGEX = /\s*Every\s+(\d+)\s+of\s+the\s+month\s*/i
-
-  def parse_section(section)
-    section =~ MONTH_REGEX
-    frequency = 1
-    [$1.to_i, frequency]
+  def parse_sections(sections)
+    def parse_section(section)
+      section =~ /\s*Every\s+(\d+)\s+of\s+the\s+month\s*/i
+      $1.to_i
+    end
+    mdays = sections.map { |s| parse_section s }
+    DaysOfMonth.new(mdays)
   end
-
-  def reminder_times_converter(times); DaysOfMonth.new(times) end
 end
 
 class DateBasedTimingInfoParser
   include TimingInfoParser
 
-  def parse_section(section)
-    year, month, day = section.split(' ').map { |it| it.to_i }
-    [DateTime.civil(year, month, day), 1]
-  end
+  def parse_sections(sections)
+    def parse_section(section)
+      year, month, day = section.split(' ').map { |part| part.to_i }
+      DateTime.civil(year, month, day)
+    end
 
-  def reminder_times_converter(times); times end
+    sections.map { |s| parse_section s }
+  end
 end

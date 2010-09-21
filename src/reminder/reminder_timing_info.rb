@@ -1,7 +1,7 @@
 class ReminderTimingInfo
 
-  def initialize(date_times, frequencies)
-    @date_times, @frequencies = date_times, frequencies
+  def initialize(date_times)
+    @date_times = date_times
   end
 
   def next_time
@@ -9,10 +9,10 @@ class ReminderTimingInfo
   end
 
   def ==(other)
-    @date_times == other.date_times and @frequencies == other.frequencies
+    @date_times == other.date_times
   end
 
   protected
   
-  attr_reader :date_times, :frequencies
+  attr_reader :date_times
 end

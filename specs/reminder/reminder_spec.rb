@@ -33,7 +33,7 @@ describe Reminder do
 end
 
 def stub_timing_info(time)
-  timing_info = ReminderTimingInfo.new(nil, nil)
+  timing_info = ReminderTimingInfo.new(nil)
   RR::stub(timing_info).next_time { time }
   timing_info
 end

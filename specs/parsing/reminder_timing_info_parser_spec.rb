@@ -16,10 +16,6 @@ describe ReminderTimingInfoParser do
   end
 
   def should_create_proper_parser(string, parser_type)
-    ParserForTest.new(string).instance_of?(parser_type).should == true
+     ReminderTimingInfoParser.new(string).instance_of?(parser_type).should == true
   end
-end
-
-class ParserForTest < ReminderTimingInfoParser
-  
 end

@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/reminder_timing_info_parser'
+require File.dirname(__FILE__) + '/../reminder/reminder'
 require File.dirname(__FILE__) + '/../../src/general/string_extensions'
 
 class ReminderParser
