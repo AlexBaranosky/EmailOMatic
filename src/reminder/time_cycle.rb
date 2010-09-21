@@ -11,7 +11,7 @@ module TimeCycle
     end
   end
 
-  def initialize(time_points)
+  def initialize(*time_points)
     raise "invalid time point" if time_points.size == 0 || any_invalid_time_points?(time_points)
     @valid_time_points = time_points
   end

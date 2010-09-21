@@ -17,7 +17,7 @@ describe Reminder do
   end
 
   it "should give next time to remind for day of the week based reminders" do
-    fridays = stub_timing_info(DaysOfWeek.new([:fridays]).first)
+    fridays = stub_timing_info(DaysOfWeek.new(:fridays).first)
     reminder = Reminder.new(MESSAGE_, fridays)
 
     next_time = reminder.next_time_to_remind
