@@ -38,7 +38,7 @@ end
 module TimingInfoParser
   def parse(timing_info_string)
     tokens = timing_info_string.split('&')
-    reminder_times = parse_sections(tokens)
+    reminder_times = parse_tokens(tokens)
     TimingInfo.new(reminder_times)
   end
 end
@@ -46,13 +46,13 @@ end
 class DayOfWeekBasedTimingInfoParser
   include TimingInfoParser
 
-  def parse_sections(sections)
-    def parse_section(section)
-      section =~ /\s*(Sundays|Mondays|Tuesdays|Wednesdays|Thursdays|Fridays|Saturdays)\s*/i
+  def parse_tokens(tokens)
+    def parse_token(token)
+      token =~ /\s*(Sundays|Mondays|Tuesdays|Wednesdays|Thursdays|Fridays|Saturdays)\s*/i
       $1.downcase.to_sym
     end
 
-    day_syms = sections.map { |s| parse_section s }
+    day_syms = tokens.map { |t| parse_token t }
     DaysOfWeek.new(day_syms)
   end
 end
@@ -60,12 +60,12 @@ end
 class DayOfMonthBasedTimingInfoParser
   include TimingInfoParser
 
-  def parse_sections(sections)
-    def parse_section(section)
-      section =~ /\s*Every\s+(\d+)\s+of\s+the\s+month\s*/i
+  def parse_tokens(tokens)
+    def parse_token(token)
+      token =~ /\s*Every\s+(\d+)\s+of\s+the\s+month\s*/i
       $1.to_i
     end
-    mdays = sections.map { |s| parse_section s }
+    mdays = tokens.map { |t| parse_token t }
     DaysOfMonth.new(mdays)
   end
 end
@@ -73,12 +73,12 @@ end
 class DateBasedTimingInfoParser
   include TimingInfoParser
 
-  def parse_sections(sections)
-    def parse_section(section)
-      year, month, day = section.split(' ').map { |part| part.to_i }
+  def parse_tokens(tokens)
+    def parse_token(token)
+      year, month, day = token.split(' ').map { |part| part.to_i }
       DateTime.civil(year, month, day)
     end
 
-    sections.map { |s| parse_section s }
+    tokens.map { |t| parse_token t }
   end
 end

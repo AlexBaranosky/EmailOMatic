@@ -25,5 +25,5 @@ end
 class ReminderTimingInfoParserForTest
   include TimingInfoParser
 
-  def parse_sections(sections); DaysOfWeek.new([:sundays]) end
+  def parse_tokens(tokens); DaysOfWeek.new([:sundays]) end
 end
