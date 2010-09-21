@@ -1,4 +1,4 @@
-class ReminderTimingInfo
+class TimingInfo
 
   def initialize(date_times)
     @date_times = date_times

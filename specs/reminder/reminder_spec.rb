@@ -1,7 +1,7 @@
 require 'spec'
 require 'rr'
 require File.dirname(__FILE__) + '/../../src/reminder/reminder'
-require File.dirname(__FILE__) + '/../../src/reminder/reminder_timing_info'
+require File.dirname(__FILE__) + '/../../src/reminder/timing_info'
 
 FRIDAY_APRIL_2 = DateTime.parse("2010/4/2")
 SATURDAY_APRIL_3 = DateTime.parse("2010/4/3")
@@ -33,7 +33,7 @@ describe Reminder do
 end
 
 def stub_timing_info(time)
-  timing_info = ReminderTimingInfo.new(nil)
+  timing_info = TimingInfo.new(nil)
   RR::stub(timing_info).next_time { time }
   timing_info
 end

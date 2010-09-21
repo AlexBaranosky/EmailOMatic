@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../src/general/date_extensions'
 require File.dirname(__FILE__) + '/../../src/general/array_extensions'
-require File.dirname(__FILE__) + '/../../src/reminder/reminder_timing_info'
+require File.dirname(__FILE__) + '/../../src/reminder/timing_info'
 
 class ReminderTimingInfoParser
 
@@ -39,7 +39,7 @@ module TimingInfoParser
   def parse(timing_info_string)
     tokens = timing_info_string.split('&')
     reminder_times = parse_sections(tokens)
-    ReminderTimingInfo.new(reminder_times)
+    TimingInfo.new(reminder_times)
   end
 end
 

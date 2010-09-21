@@ -15,13 +15,13 @@ describe ReminderParser do
 
   it 'should parse a date-based line into a proper Reminder object' do
     actual_reminder = parser.parse(%Q|2010 4 1 "#{MESSAGE}"|)
-    expected_reminder = Reminder.new(MESSAGE,  ReminderTimingInfo.new([TIME_A]))
+    expected_reminder = Reminder.new(MESSAGE,  TimingInfo.new([TIME_A]))
     actual_reminder.should == expected_reminder
   end
 
   it 'should parse a line with multiple date-based reminder times into a Reminder with multiple times' do
     actual_reminder = parser.parse(%Q|2010 4 1 & 2010 5 1 "#{MESSAGE}"|)
-    expected_reminder = Reminder.new(MESSAGE,  ReminderTimingInfo.new([TIME_A, TIME_B]))
+    expected_reminder = Reminder.new(MESSAGE,  TimingInfo.new([TIME_A, TIME_B]))
     actual_reminder.should == expected_reminder
   end
 
@@ -33,13 +33,13 @@ describe ReminderParser do
 
   it 'should parse a day-based line with a specified frequency (in weeks) into a proper Reminder object' do
     actual_reminder = parser.parse(%Q|Sundays 2 "#{MESSAGE}"|)
-    expected_reminder = Reminder.new(MESSAGE,  ReminderTimingInfo.new(DaysOfWeek.new([:sundays])))
+    expected_reminder = Reminder.new(MESSAGE,  TimingInfo.new(DaysOfWeek.new([:sundays])))
     actual_reminder.should == expected_reminder
   end
 
   it 'should parse a day-based line into a proper Reminder object' do
     actual_reminder = parser.parse(%Q|Thursdays "#{MESSAGE}"|)
-    expected_reminder = Reminder.new(MESSAGE, ReminderTimingInfo.new(DaysOfWeek.new([:thursdays])))
+    expected_reminder = Reminder.new(MESSAGE, TimingInfo.new(DaysOfWeek.new([:thursdays])))
     actual_reminder.should == expected_reminder
   end
 

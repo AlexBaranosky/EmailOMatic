@@ -1,10 +1,10 @@
 require 'spec'
-require File.dirname(__FILE__) + '/../../src/reminder/reminder_timing_info'
+require File.dirname(__FILE__) + '/../../src/reminder/timing_info'
 
-describe ReminderTimingInfo do
+describe TimingInfo do
 
   it 'should tell the next date time in the future' do
-    timing_info = ReminderTimingInfo.new([DateTime.civil(3000, 1, 1), DateTime.civil(3000, 2, 1)])
+    timing_info = TimingInfo.new([DateTime.civil(3000, 1, 1), DateTime.civil(3000, 2, 1)])
     timing_info.next_time.should == DateTime.civil(3000, 1, 1)
   end
 

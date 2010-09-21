@@ -18,7 +18,7 @@ describe ReminderParser do
   end
 
   it "should parse line into a Reminder" do
-    parser.parse("irrelevant-part-of-string\"message\"").should == Reminder.new('message', ReminderTimingInfo.new(DaysOfWeek.new([:sundays])))
+    parser.parse("irrelevant-part-of-string\"message\"").should == Reminder.new('message', TimingInfo.new(DaysOfWeek.new([:sundays])))
   end
 end
 
