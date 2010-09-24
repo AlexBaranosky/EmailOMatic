@@ -26,9 +26,4 @@ describe DaysOfMonth do
 
     defined? day.each.should == true
   end
-
-  it "should not go infinite recursion on me" do
-    day = DaysOfMonth.new(11)
-    day.first
-  end
 end

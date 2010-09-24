@@ -1,4 +1,5 @@
 require 'spec'
+require 'timecop'
 require File.dirname(__FILE__) + '/../../src/reminder/days_of_week'
 
 describe DaysOfWeek do
@@ -10,7 +11,7 @@ describe DaysOfWeek do
     day.first.wday.should == WEDNESDAY_
     day.second.wday.should == WEDNESDAY_
   end
-                             
+
   it 'should return the day at midnight EST' do
     day = DaysOfWeek.new(:saturdays)
     first = day.first
@@ -18,11 +19,13 @@ describe DaysOfWeek do
     first.sec.should == 0
   end
 
-  # time sensitive......
   it 'should be an infinite enumeration of DateTimes for the specified two days' do
-    day = DaysOfWeek.new(:wednesdays, :fridays)
-    day.second.wday.should == FRIDAY_
-    day.first.wday.should == WEDNESDAY_
+    THURSDAY = Date.civil(2010, 9, 23)
+    Timecop.freeze(THURSDAY) do
+      day = DaysOfWeek.new(:wednesdays, :fridays)
+      day.first.wday.should == FRIDAY_
+      day.second.wday.should == WEDNESDAY_
+    end
   end
 
   it 'should consider equal any two DayOfWeeks created with same day specified' do
