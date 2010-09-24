@@ -4,12 +4,12 @@ require File.dirname(__FILE__) + '/../../src/reminder/timing_info'
 
 class ReminderTimingInfoParser
 
-  def self.new(sections)
-    if (day_of_week_based?(sections))
+  def self.new(s)
+    if (day_of_week_based? s)
       DayOfWeekBasedTimingInfoParser.new
-    elsif (day_of_month_based?(sections))
+    elsif (day_of_month_based? s)
       DayOfMonthBasedTimingInfoParser.new
-    elsif (date_based?(sections))
+    elsif (date_based? s)
       DateBasedTimingInfoParser.new
     else
       raise 'Invalid and unexpected state of the reminder data file, when parsing the raw reminder time data'
@@ -18,20 +18,16 @@ class ReminderTimingInfoParser
 
   private
 
-  def self.day_of_week_based?(sections)
-    def self.contains_any_day(string)
-      Date::DAYS_OF_WEEK.any? { |day| string.include?(day) }
-    end
-
-    sections.any? { |section| contains_any_day(section) }    
+  def self.day_of_week_based?(s)
+    Date::DAYS_OF_WEEK.any? { |day| s.include? day }
   end
 
-  def self.day_of_month_based?(sections)
-    sections.include?('Every')
+  def self.day_of_month_based?(s)
+    s =~ /^\s*Every \d+ of the month/
   end
 
-  def self.date_based?(sections)
-    sections =~ /\s*\d+\s+\d+\s+\d+\s*/
+  def self.date_based?(s)
+    s =~ /^\s*\d{4}\s+\d{1,2}\s+\d{1,2}\s*/
   end
 end
 
@@ -53,7 +49,7 @@ class DayOfWeekBasedTimingInfoParser
     end
 
     day_syms = tokens.map { |t| parse_token t }
-    DaysOfWeek.new(*day_syms)
+    DaysOfWeek.new(* day_syms)
   end
 end
 
@@ -65,8 +61,9 @@ class DayOfMonthBasedTimingInfoParser
       token =~ /\s*Every\s+(\d+)\s+of\s+the\s+month\s*/i
       $1.to_i
     end
+
     mdays = tokens.map { |t| parse_token t }
-    DaysOfMonth.new(*mdays)
+    DaysOfMonth.new(* mdays)
   end
 end
 
