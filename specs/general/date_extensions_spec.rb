@@ -7,7 +7,7 @@ describe Date do
   MONDAY = Date.civil(2010, 8, 9)
   TUESDAY = Date.civil(2010, 8, 10)
   WEDNESDAY = Date.civil(2010, 8, 11)
-  THURSDAY = Date.civil(2010, 8, 12)
+  A_THURSDAY = Date.civil(2010, 8, 12)
   FRIDAY = Date.civil(2010, 8, 13)
   SATURDAY = Date.civil(2010, 8, 14)
 
@@ -16,7 +16,7 @@ describe Date do
     MONDAY.as_day.should == 'Mondays'
     TUESDAY.as_day.should == 'Tuesdays'
     WEDNESDAY.as_day.should == 'Wednesdays'
-    THURSDAY.as_day.should == 'Thursdays'
+    A_THURSDAY.as_day.should == 'Thursdays'
     FRIDAY.as_day.should == 'Fridays'
     SATURDAY.as_day.should == 'Saturdays'
   end

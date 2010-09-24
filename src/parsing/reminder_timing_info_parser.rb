@@ -31,7 +31,7 @@ class ReminderTimingInfoParser
   end
 
   def self.date_based?(sections)
-    !day_of_week_based?(sections) && !day_of_month_based?(sections)
+    sections =~ /\s*\d+\s+\d+\s+\d+\s*/
   end
 end
 
