@@ -18,6 +18,6 @@ class Reminders
   end
 
   def reminders_ready_to_be_sent
-    @reminder_list.select { |r| r.days_from_now_due?(5) }
+    @reminder_list.select { |r| r.days_from_now_due? 5 }
   end
 end

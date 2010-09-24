@@ -8,7 +8,7 @@ module InfiniteEnumerable
   end
 
   def map(&block)
-    lazily_enumerate(:map) {|enum, value| enum.yield(block.call(value))}
+    lazily_enumerate(:map) { |enum, value| enum.yield(block.call(value)) }
   end
 
   def collect(&block);
@@ -16,7 +16,7 @@ module InfiniteEnumerable
   end
 
   def each(&block)
-    lazily_enumerate(:each) {|enum, value| enum.yield(value)}
+    lazily_enumerate(:each) { |enum, value| enum.yield value }
   end
 
 end
