@@ -23,7 +23,7 @@ class ReminderTimingInfoParser
   end
 
   def self.day_of_month_based?(s)
-    s =~ /^\s*Every \d+ of the month/
+    s =~ /^\s*Every \d{1,2} of the month/i #TODO, same regex as below in the DayOfMonthBased...Parser
   end
 
   def self.date_based?(s)
@@ -58,7 +58,7 @@ class DayOfMonthBasedTimingInfoParser
 
   def parse_tokens(tokens)
     def parse_token(token)
-      token =~ /\s*Every\s+(\d+)\s+of\s+the\s+month\s*/i
+      token =~ /^\s*Every (\d{1,2}) of the month/i
       $1.to_i
     end
 
