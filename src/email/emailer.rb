@@ -1,5 +1,6 @@
 require 'net/smtp'
 require 'smtp_tls'
+require File.dirname(__FILE__) + '/reminder_email_formatter'
 
 class Emailer
   USERNAME = 'user.name'
