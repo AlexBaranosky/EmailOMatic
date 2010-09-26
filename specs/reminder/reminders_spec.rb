@@ -11,6 +11,7 @@ describe Reminders do
 
   it "should persist reminder's size and day" do
     reminders.persist_due_reminder_count_and_day
+    #TODO: this spec appears to not be complete! fix that!
   end
 
   it 'should know if it is ready to be sent' do
@@ -20,8 +21,7 @@ describe Reminders do
   end
 
   it 'should return the reminders for the next two days when asked for the reminders which are ready to be sent' do
-    reminders << mock_reminder
-    reminders << mock_reminder
+    reminders << mock_reminder << mock_reminder
     reminders.reminders_ready_to_be_sent.size.should == 2
   end
 end

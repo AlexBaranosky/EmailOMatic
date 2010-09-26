@@ -1,12 +1,11 @@
 require 'net/smtp'
-require 'smtp_tls'
 require File.dirname(__FILE__) + '/reminder_email_formatter'
 
 class Emailer
   USERNAME = 'user.name'
-  EMAIL_ADDR_THAT_SENDS_EM = "#{USERNAME}@gmail.com"
+  SENDER_EMAIL = "#{USERNAME}@gmail.com"
   PASSWORD = 'P4zzW0rd!'
-  FROM    = %Q|"EmailOMatic Reminder Service" <#{EMAIL_ADDR_THAT_SENDS_EM}>|
+  FROM    = %Q|"EmailOMatic Reminder Service" <#{SENDER_EMAIL}>|
 
   def initialize(reminder_email_formatter = ReminderEmailFormatter.new)
     @reminder_email_formatter = reminder_email_formatter
@@ -25,17 +24,19 @@ class Emailer
     message_body = @reminder_email_formatter.format_due_reminders_for_email(reminders)
 
     <<MESSAGE_END
-From:    #{FROM}
-To: "   #{recipient.name}   " <   #{recipient.email_address}   >
+From:     #{FROM}
+To: "    #{recipient.name}    " <    #{recipient.email_address}    >
 Subject: EmailOMatic Reminder Service
 
-   #{message_body}
+    #{message_body}
 MESSAGE_END
   end
 
-  def send_email_via_smtp(message, email_address)
-    Net::SMTP.start('smtp.gmail.com', 587, 'localhost.localdomain', USERNAME, PASSWORD, 'plain') do |smtp|
-      smtp.send_message(message, EMAIL_ADDR_THAT_SENDS_EM, email_address)
+  def send_email_via_smtp(message, destination_email)
+    smtp = Net::SMTP.new('smtp.gmail.com', 587)
+    smtp.enable_starttls
+    smtp.start('localhost.localdomain', USERNAME, PASSWORD, 'plain') do |connection|
+      connection.send_message(message, SENDER_EMAIL, destination_email)
     end
   end
 

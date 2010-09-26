@@ -51,7 +51,7 @@ class DayOfWeekBasedTimingInfoParser
     end
 
     day_syms = tokens.map { |t| parse_token t }
-    DaysOfWeek.new(* day_syms)
+    DaysOfWeek.new(*day_syms)
   end
 end
 
@@ -65,7 +65,7 @@ class DayOfMonthBasedTimingInfoParser
     end
 
     mdays = tokens.map { |t| parse_token t }
-    DaysOfMonth.new(* mdays)
+    DaysOfMonth.new(*mdays)
   end
 end
 

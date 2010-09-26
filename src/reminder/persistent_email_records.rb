@@ -1,3 +1,4 @@
+require 'date'
 require File.dirname(__FILE__) + '/../../src/general/enumerable_extensions'
 
 class PersistentEmailRecords
@@ -7,7 +8,6 @@ class PersistentEmailRecords
 
   def num_reminders_already_sent_today
     return 0 if its_a_new_day?
-    puts "not a new day"
     persisted_value_of_num_of_reminders_last_sent
   end
 
@@ -29,7 +29,6 @@ class PersistentEmailRecords
   end
 
   def persisted_value_of_wday_of_last_persist_time
-    puts @num_records_sent_records_file
     File.open(@num_records_sent_records_file).second { |line| line }.to_i
   end
 end
