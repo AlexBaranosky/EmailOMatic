@@ -4,15 +4,13 @@ require File.dirname(__FILE__) + '/../../src/reminder/timing_info'
 require File.dirname(__FILE__) + '/../../src/reminder/days_of_week'
 require File.dirname(__FILE__) + '/../../src/reminder/days_of_month'
 
+
 class ReminderTimingInfoParser
 
   def self.new(s)
-    if    (DayOfWeekBasedTimingInfoParser.can_parse? s)  then DayOfWeekBasedTimingInfoParser.new
-    elsif (DayOfMonthBasedTimingInfoParser.can_parse? s) then DayOfMonthBasedTimingInfoParser.new
-    elsif (DateBasedTimingInfoParser.can_parse? s)       then DateBasedTimingInfoParser.new
-    else
-      raise 'Invalid and unexpected state of the reminder data file, when parsing the raw reminder time data'
-    end
+    parsers = [DayOfWeekBasedTimingInfoParser, DayOfMonthBasedTimingInfoParser, DateBasedTimingInfoParser]
+    parsers.each { |p| return p.new if p.can_parse? s }
+    raise 'Cannot parser reminders.  Invalid format.'
   end
 end
 
