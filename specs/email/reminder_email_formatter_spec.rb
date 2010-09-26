@@ -10,7 +10,8 @@ describe ReminderEmailFormatter do
 
   #TODO: seems to be a lot of dependencies neee for this test.  Look into that.
   it "should format reminders into a email message" do
-    Timecop.freeze(Date.civil(2010, 9, 25)) do
+    SATURDAY_SEP_25 = Date.civil(2010, 9, 25)
+    Timecop.freeze(SATURDAY_SEP_25) do
       reminder1 = Reminder.new("message 1", TimingInfo.new(DaysOfWeek.new(:sundays)))
       reminder2 = Reminder.new("message 2", TimingInfo.new(DaysOfWeek.new(:mondays)))
       reminders = GroupOfReminders.new([reminder1, reminder2], nil)

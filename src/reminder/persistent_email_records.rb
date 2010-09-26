@@ -1,5 +1,5 @@
 require 'date'
-require File.dirname(__FILE__) + '/../../src/general/enumerable_extensions'
+require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
 
 class PersistentEmailRecords
   def initialize(num_records_sent_records_file = File.dirname(__FILE__) + '/../../resources/persistent_email_records.txt')

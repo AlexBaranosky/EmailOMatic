@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../../src/reminder/days_of_week'
-require File.dirname(__FILE__) + '/../../src/general/enumerable_extensions'
+require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
 
 class Reminder
   attr_reader :message

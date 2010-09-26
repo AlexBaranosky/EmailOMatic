@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../src/general/enumerable_extensions'
+require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
 
 module InfiniteEnumerable
   include Enumerable
