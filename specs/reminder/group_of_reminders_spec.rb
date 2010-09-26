@@ -2,12 +2,12 @@ require 'spec'
 require 'rr'
 require File.dirname(__FILE__) + '/../../src/reminder/persistent_email_records'
 require File.dirname(__FILE__) + '/../../src/reminder/reminder'
-require File.dirname(__FILE__) + '/../../src/reminder/reminders'
+require File.dirname(__FILE__) + '/../../src/reminder/group_of_reminders'
 
-describe Reminders do
+describe GroupOfReminders do
   reminders = nil
 
-  before(:each) { reminders = Reminders.new([], mock_email_records) }
+  before(:each) { reminders = GroupOfReminders.new([], mock_email_records) }
 
   it "should persist reminder's size and day" do
     reminders.persist_due_reminder_count_and_day

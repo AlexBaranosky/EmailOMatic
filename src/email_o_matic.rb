@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../src/email/emailer'
-require File.dirname(__FILE__) + '/../src/reminder/reminders'
+require File.dirname(__FILE__) + '/../src/reminder/group_of_reminders'
 require 'date'
 
 class EmailOMatic
@@ -24,7 +24,7 @@ class EmailOMatic
   def read_reminders_from_reminders_file
     raise('the file with the reminders in it was not found') unless File.exists?(REMINDERS_FILE)
 
-    reminders = Reminders.new
+    reminders = GroupOfReminders.new
     File.open(REMINDERS_FILE).each do |line|
       reminder = @parser.parse(line)
       reminders << reminder if(reminder)

@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../src/reminder/persistent_email_records'
 
-class Reminders
+class GroupOfReminders
   def initialize(reminder_list = [], email_records = PersistentEmailRecords.new)
     @reminder_list, @email_records = reminder_list, email_records
   end

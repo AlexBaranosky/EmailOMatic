@@ -1,3 +1,5 @@
+require File.dirname(__FILE__) + '/../../src/general/date_extensions'
+
 class ReminderEmailFormatter
   def format_due_reminders_for_email(reminders)
     due_reminders = reminders.reminders_ready_to_be_sent
