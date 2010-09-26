@@ -7,29 +7,12 @@ require File.dirname(__FILE__) + '/../../src/reminder/days_of_month'
 class ReminderTimingInfoParser
 
   def self.new(s)
-    if (day_of_week_based? s)
-      DayOfWeekBasedTimingInfoParser.new
-    elsif (day_of_month_based? s)
-      DayOfMonthBasedTimingInfoParser.new
-    elsif (date_based? s)
-      DateBasedTimingInfoParser.new
+    if    (DayOfWeekBasedTimingInfoParser.can_parse? s)  then DayOfWeekBasedTimingInfoParser.new
+    elsif (DayOfMonthBasedTimingInfoParser.can_parse? s) then DayOfMonthBasedTimingInfoParser.new
+    elsif (DateBasedTimingInfoParser.can_parse? s)       then DateBasedTimingInfoParser.new
     else
       raise 'Invalid and unexpected state of the reminder data file, when parsing the raw reminder time data'
     end
-  end
-
-  private
-
-  def self.day_of_week_based?(s)
-    Date::DAYS_OF_WEEK.any? { |day| s.include? day }
-  end
-
-  def self.day_of_month_based?(s)
-    s =~ /^\s*Every \d{1,2} of the month/i #TODO, same regex as below in the DayOfMonthBased...Parser
-  end
-
-  def self.date_based?(s)
-    s =~ /^\s*\d{4}\s+\d{1,2}\s+\d{1,2}\s*/
   end
 end
 
@@ -44,6 +27,10 @@ end
 class DayOfWeekBasedTimingInfoParser
   include TimingInfoParser
 
+  def self.can_parse?(s)
+    Date::DAYS_OF_WEEK.any? { |day| s.include? day }
+  end
+
   def parse_tokens(tokens)
     def parse_token(token)
       token =~ /\s*(Sundays|Mondays|Tuesdays|Wednesdays|Thursdays|Fridays|Saturdays)\s*/i
@@ -57,10 +44,14 @@ end
 
 class DayOfMonthBasedTimingInfoParser
   include TimingInfoParser
+  
+  DAY_OF_MONTH_REGEX = /^\s*Every (\d{1,2}) of the month/i
+
+  def self.can_parse?(s); s =~ DAY_OF_MONTH_REGEX end
 
   def parse_tokens(tokens)
     def parse_token(token)
-      token =~ /^\s*Every (\d{1,2}) of the month/i
+      token =~ DAY_OF_MONTH_REGEX
       $1.to_i
     end
 
@@ -71,6 +62,10 @@ end
 
 class DateBasedTimingInfoParser
   include TimingInfoParser
+
+  def self.can_parse?(s)
+    s =~ /^\s*\d{4}\s+\d{1,2}\s+\d{1,2}\s*/
+  end
 
   def parse_tokens(tokens)
     def parse_token(token)

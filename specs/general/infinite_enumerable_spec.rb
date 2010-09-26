@@ -11,6 +11,6 @@ class InfiniteEnumerableForTest
 end
 
 describe InfiniteEnumerable do
-  #TODO: shoudl be tests covering this infinite enumerable stuff.  Fix that.
-  it "should be able select without infinitely recurring"
+  #TODO: should be tests covering this infinite enumerable stuff.  Fix that.
+  # it "should be able select without infinitely recurring" 
 end
