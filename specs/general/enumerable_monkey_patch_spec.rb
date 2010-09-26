@@ -5,7 +5,10 @@ require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
 class InfiniteEnumerableForTest
   include Enumerable
 
-  def each; loop { yield 'a' } end
+  def each
+    count = 0
+    loop { yield count; count += 1 }
+  end
 end
 
 describe Enumerable do
@@ -35,6 +38,6 @@ describe Enumerable do
 
   it "should be able to lazily enumerate" do
     lazy_result = InfiniteEnumerableForTest.new.send(:lazily_enumerate, :each).first
-    lazy_result.should == 'a'
+    lazy_result.should == 0
   end
 end

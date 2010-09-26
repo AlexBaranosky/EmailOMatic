@@ -6,7 +6,7 @@ module Enumerable
   end
 
   def second
-    each_with_index { |x, idx| return x if idx == 1 }
+    each_with_index { |x, i| return x if i == 1 }
   end
 
   protected

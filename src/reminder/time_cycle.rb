@@ -34,7 +34,7 @@ module TimeCycle
   def go_to_first_of_specified_time_points
     date = DateTime.now
     date += 1 until specified_time_point?(date)
-    DateTime.civil(date.year, date.month, date.day, 0, 0, 0) 
+    DateTime.civil(date.year, date.month, date.day, 0, 0, 0)
   end
 
   def advance_to_midnight_of_next_specified_time_point(starting_from)
