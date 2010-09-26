@@ -46,7 +46,7 @@ describe DaysOfWeek do
     day1.should == day2
   end
 
-  it 'should define each() and include InfiniteLazyEnumerable' do
+  it 'should define each() and include InfiniteEnumerable' do
     day = DaysOfWeek.new(:wednesdays)
     day.kind_of?(InfiniteEnumerable).should == true
 

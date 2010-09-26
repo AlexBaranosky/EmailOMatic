@@ -20,7 +20,7 @@ describe DaysOfMonth do
     day1.should_not == day2
   end
 
-  it "should define 'each' and include InfiniteLazyEnumerable" do
+  it "should define 'each' and include InfiniteEnumerable" do
     day = DaysOfMonth.new(9)
     day.kind_of?(InfiniteEnumerable).should == true
 

@@ -3,7 +3,7 @@ class ReminderEmailFormatter
     due_reminders = reminders.reminders_ready_to_be_sent
 
     "The following reminders are coming up for tomorrow and the day after tomorrow: \n\n" +
-    due_reminders.enum_for(:each_with_index).map { |r, i| format_reminder(i, r) }.join("\n\n")
+    due_reminders.each_with_index.map { |r, i| format_reminder(i, r) }.join("\n\n")
   end
 
   private
