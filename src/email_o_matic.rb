@@ -24,12 +24,10 @@ class EmailOMatic
   def read_reminders_from_reminders_file
     raise('the file with the reminders in it was not found') unless File.exists?(REMINDERS_FILE)
 
-    reminders = GroupOfReminders.new
-    File.open(REMINDERS_FILE).each do |line|
+    File.open(REMINDERS_FILE).each_with_object(GroupOfReminders.new) do |line, reminders|
       reminder = @parser.parse(line)
       reminders << reminder if(reminder)
     end
-    reminders
   end
 end
 

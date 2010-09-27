@@ -64,7 +64,7 @@ class DateBasedTimingInfoParser
 
   def parse_tokens(tokens)
     def parse_token(token)
-      year, month, day = token.split(' ').map { |part| part.to_i }
+      year, month, day = token.split(' ').map(&:to_i)
       DateTime.civil(year, month, day)
     end
 

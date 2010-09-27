@@ -10,7 +10,7 @@ class GroupOfReminders
   end
 
   def ready_to_be_sent?
-    @reminder_list && reminders_ready_to_be_sent.size > @email_records.num_reminders_already_sent_today
+    reminders_ready_to_be_sent.size > @email_records.num_reminders_already_sent_today
   end
 
   def persist_due_reminder_count_and_day
