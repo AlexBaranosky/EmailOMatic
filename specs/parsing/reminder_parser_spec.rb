@@ -23,7 +23,7 @@ describe ReminderParser do
 end
 
 class ReminderTimingInfoParserForTest
-  include TimingInfoParser
+  include ParsesTimingInfo
 
   def parse_tokens(tokens); DaysOfWeek.new(:sundays) end
 end

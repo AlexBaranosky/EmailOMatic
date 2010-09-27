@@ -4,17 +4,16 @@ require File.dirname(__FILE__) + '/../../src/reminder/timing_info'
 require File.dirname(__FILE__) + '/../../src/reminder/days_of_week'
 require File.dirname(__FILE__) + '/../../src/reminder/days_of_month'
 
-
 class ReminderTimingInfoParser
 
   def self.new(s)
     parsers = [DayOfWeekBasedTimingInfoParser, DayOfMonthBasedTimingInfoParser, DateBasedTimingInfoParser]
     parsers.each { |p| return p.new if p.can_parse? s }
-    raise 'Cannot parser reminders.  Invalid format.'
+    raise 'Cannot parse reminders.  Invalid format.'
   end
 end
 
-module TimingInfoParser
+module ParsesTimingInfo
   def parse(timing_info_string)
     tokens = timing_info_string.split('&')
     reminder_times = parse_tokens(tokens)
@@ -23,7 +22,7 @@ module TimingInfoParser
 end
 
 class DayOfWeekBasedTimingInfoParser
-  include TimingInfoParser
+  include ParsesTimingInfo
 
   def self.can_parse?(s)
     Date::DAYS_OF_WEEK.any? { |day| s.include? day }
@@ -41,7 +40,7 @@ class DayOfWeekBasedTimingInfoParser
 end
 
 class DayOfMonthBasedTimingInfoParser
-  include TimingInfoParser
+  include ParsesTimingInfo
   
   DAY_OF_MONTH_REGEX = /^\s*Every (\d{1,2}) of the month/i
 
@@ -59,11 +58,9 @@ class DayOfMonthBasedTimingInfoParser
 end
 
 class DateBasedTimingInfoParser
-  include TimingInfoParser
+  include ParsesTimingInfo
 
-  def self.can_parse?(s)
-    s =~ /^\s*\d{4}\s+\d{1,2}\s+\d{1,2}\s*/
-  end
+  def self.can_parse?(s); s =~ /^\s*\d{4}\s+\d{1,2}\s+\d{1,2}\s*/ end
 
   def parse_tokens(tokens)
     def parse_token(token)
