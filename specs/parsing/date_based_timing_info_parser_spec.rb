@@ -1,5 +1,5 @@
 require 'spec'
-require File.dirname(__FILE__) + '/../../src/parsing/reminder_timing_info_parser'
+require File.dirname(__FILE__) + '/../../src/parsing/timing_info_parser'
 
 describe DateBasedTimingInfoParser do
   parser = DateBasedTimingInfoParser.new

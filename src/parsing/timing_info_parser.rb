@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + '/../../src/reminder/timing_info'
 require File.dirname(__FILE__) + '/../../src/reminder/days_of_week'
 require File.dirname(__FILE__) + '/../../src/reminder/days_of_month'
 
-class ReminderTimingInfoParser
+class TimingInfoParser
 
   def self.new(s)
     parsers = [DayOfWeekBasedTimingInfoParser, DayOfMonthBasedTimingInfoParser, DateBasedTimingInfoParser]

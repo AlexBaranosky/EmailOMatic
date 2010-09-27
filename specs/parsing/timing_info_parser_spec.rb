@@ -1,7 +1,7 @@
 require 'spec'
-require File.dirname(__FILE__) + '/../../src/parsing/reminder_timing_info_parser'
+require File.dirname(__FILE__) + '/../../src/parsing/timing_info_parser'
 
-describe ReminderTimingInfoParser do
+describe TimingInfoParser do
 
   it 'should create a date based timing info parser' do
     should_create_proper_parser(' 2000 1 2  & 2000 1 2   ', DateBasedTimingInfoParser)
@@ -16,10 +16,10 @@ describe ReminderTimingInfoParser do
   end
   
   it 'should raise error if bad string' do
-    proc { ReminderTimingInfoParser.new(" SCREWED UP LINE OF UNPARSEABLE STUFF ") }.should raise_error
+    proc { TimingInfoParser.new(" SCREWED UP LINE OF UNPARSEABLE STUFF ") }.should raise_error
   end
 
   def should_create_proper_parser(string, parser_type)
-     ReminderTimingInfoParser.new(string).instance_of?(parser_type).should == true
+     TimingInfoParser.new(string).instance_of?(parser_type).should == true
   end
 end
