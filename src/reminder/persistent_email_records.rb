@@ -26,8 +26,8 @@ class PersistentEmailRecords
     recorded_value_of("LAST_PERSIST_WDAY") != DateTime.now.wday
   end
 
-  def recorded_value_of(line_marker)
-    File.open(@records_file).find { |line| line =~ /#{line_marker}:\s*(\d+)/ }
+  def recorded_value_of(record_name)
+    File.open(@records_file).find { |line| line =~ /#{record_name}:\s*(\d+)/ }
     $1.to_i
   end
 end
