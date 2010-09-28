@@ -1,7 +1,7 @@
 require 'date'
 
 module DateExtensions
-  DAYS_OF_WEEK = ["Sundays", "Mondays", "Tuesdays", "Wednesdays", "Thursdays", "Fridays", "Saturdays"]
+  DAYS_OF_WEEK = %w[Sundays Mondays Tuesdays Wednesdays Thursdays Fridays Saturdays]
 
   def m_d_y
     [mon, mday, year].join('/')
