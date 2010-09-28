@@ -27,10 +27,10 @@ describe GroupOfReminders do
 end
 
 def stub_email_records
-  email_records = RR::mock!.record_num_of_reminders_and_todays_wday_value.with_any_args.subject
+  email_records = RR::stub!.record_num_of_reminders_and_todays_wday_value.with_any_args.subject
   RR::stub(email_records).num_reminders_already_sent_today { 0 }.subject
 end
 
 def stub_reminder
-  RR::mock!.days_from_now_due?.with_any_args { true }.subject
+  RR::stub!.days_from_now_due?.with_any_args { true }.subject
 end
