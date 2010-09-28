@@ -1,6 +1,6 @@
 require 'spec'
 require 'timecop'
-require File.dirname(__FILE__) + '/../../src/reminder/days_of_week'
+require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 
 describe DaysOfWeek do
   WEDNESDAY_ = 3

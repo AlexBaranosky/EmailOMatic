@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../../src/general/date_extensions'
 require File.dirname(__FILE__) + '/../../src/general/array_extensions'
-require File.dirname(__FILE__) + '/../../src/reminder/timing_info'
-require File.dirname(__FILE__) + '/../../src/reminder/days_of_week'
-require File.dirname(__FILE__) + '/../../src/reminder/days_of_month'
+require File.dirname(__FILE__) + '/../../src/time/timing_info'
+require File.dirname(__FILE__) + '/../../src/time/days_of_week'
+require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 
 class TimingInfoParser
 

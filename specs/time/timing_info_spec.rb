@@ -1,5 +1,5 @@
 require 'spec'
-require File.dirname(__FILE__) + '/../../src/reminder/timing_info'
+require File.dirname(__FILE__) + '/../../src/time/timing_info'
 
 describe TimingInfo do
   it 'should tell the next date time in the future' do

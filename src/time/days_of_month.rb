@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../general/infinite_enumerable'
-require File.dirname(__FILE__) + '/../reminder/date_cycle'
+require File.dirname(__FILE__) + '/date_cycle'
 require 'set'
 
 class DaysOfMonth

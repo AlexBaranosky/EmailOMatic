@@ -1,7 +1,7 @@
 require 'spec'
 require 'rr'
 require File.dirname(__FILE__) + '/../../src/reminder/reminder'
-require File.dirname(__FILE__) + '/../../src/reminder/timing_info'
+require File.dirname(__FILE__) + '/../../src/time/timing_info'
 require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
 
 FRIDAY_APRIL_2 = DateTime.parse("2010/4/2")

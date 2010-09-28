@@ -1,5 +1,5 @@
 require "spec"
-require File.dirname(__FILE__) + '/../../src/reminder/days_of_month'
+require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 
 describe DaysOfMonth do
   it "should be an infinite enumeration of DateTimes for the specified day of the month" do

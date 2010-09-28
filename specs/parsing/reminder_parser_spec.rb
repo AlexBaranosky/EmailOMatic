@@ -1,7 +1,7 @@
 require "spec"
 require File.dirname(__FILE__) + '/../../src/parsing/timing_info_parser'
 require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
-require File.dirname(__FILE__) + '/../../src/reminder/days_of_week'
+require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 
 class FakeReminderTimingInfoParser < TimingInfoParser
   def self.new(*args)

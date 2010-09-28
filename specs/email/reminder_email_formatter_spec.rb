@@ -3,7 +3,7 @@ require 'timecop'
 require File.dirname(__FILE__) + '/../../src/email/reminder_email_formatter'
 require File.dirname(__FILE__) + '/../../src/reminder/reminder'
 require File.dirname(__FILE__) + '/../../src/reminder/group_of_reminders'
-require File.dirname(__FILE__) + '/../../src/reminder/timing_info'
+require File.dirname(__FILE__) + '/../../src/time/timing_info'
 
 describe ReminderEmailFormatter do
   formatter = ReminderEmailFormatter.new
