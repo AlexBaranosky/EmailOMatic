@@ -46,6 +46,17 @@ describe DaysOfWeek do
     day1.should == day2
   end
 
+  it "should not accept invalid days" do
+    DaysOfWeek.new(:sundays)
+    DaysOfWeek.new(:mondays)
+    DaysOfWeek.new(:tuesdays)
+    DaysOfWeek.new(:wednesdays)
+    DaysOfWeek.new(:thursdays)
+    DaysOfWeek.new(:fridays)
+    DaysOfWeek.new(:saturdays)
+    proc { DaysOfWeek.new(:gizundays) }.should raise_error
+  end
+
   it 'should define each() and include InfiniteEnumerable' do
     day = DaysOfWeek.new(:wednesdays)
     day.kind_of?(InfiniteEnumerable).should == true

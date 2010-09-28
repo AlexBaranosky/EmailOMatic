@@ -20,6 +20,13 @@ describe DaysOfMonth do
     day1.should_not == day2
   end
 
+  it "should not accept invalid days" do
+    proc { DaysOfMonth.new(0) }.should raise_error
+    DaysOfMonth.new(1)
+    DaysOfMonth.new(31)
+    proc { DaysOfMonth.new(32) }.should raise_error
+  end
+
   it "should define 'each' and include InfiniteEnumerable" do
     day = DaysOfMonth.new(9)
     day.kind_of?(InfiniteEnumerable).should == true

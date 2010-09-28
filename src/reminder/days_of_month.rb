@@ -8,7 +8,7 @@ class DaysOfMonth
   private
 
   def valid?(day_nums)
-    day_nums.all? { |d| d <= 31 || d >= 1 }
+    day_nums.all? { |d| d <= 31 && d >= 1 }
   end
 
   def date_in_the_cycle?(date)
