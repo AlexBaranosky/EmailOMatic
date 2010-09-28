@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../../src/reminder/days_of_week'
 
 class FakeReminderTimingInfoParser < TimingInfoParser
-  def self.new(* args)
+  def self.new(*args)
     ReminderTimingInfoParserForTest.new
   end
 end
