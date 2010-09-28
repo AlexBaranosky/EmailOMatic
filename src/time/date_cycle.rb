@@ -1,3 +1,4 @@
+require 'date'
 require File.dirname(__FILE__) + '/../../src/general/infinite_enumerable'
 
 module DateCycle

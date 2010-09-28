@@ -19,7 +19,7 @@ describe DaysOfWeek do
     first.sec.should == 0
   end
 
-  it 'should be an infinite enumeration of DateTimes for the specified two days' do
+  it 'should be an infinite enumeration of DateTimes for the specified days' do
     A_THURSDAY = Date.civil(2010, 9, 23)
     Timecop.freeze(A_THURSDAY) do
       day = DaysOfWeek.new(:wednesdays, :fridays)
