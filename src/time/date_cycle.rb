@@ -15,11 +15,11 @@ module DateCycle
   end
 
   def each
-    date = go_to_first_date_in_cycle
+    date = first_date_in_cycle
 
     loop do
       yield date
-      date = advance_to_midnight_of_next_date_in_cycle(date)
+      date = midnight_of_next_date_in_cycle_after(date)
     end
   end
 
@@ -29,17 +29,18 @@ module DateCycle
 
   private
 
-  def go_to_first_date_in_cycle
+  def first_date_in_cycle
     date = DateTime.now
-    date += 1 until date_in_the_cycle?(date)
-    DateTime.civil(date.year, date.month, date.day, 0, 0, 0)
+    next_date_in_cycle_after(date)
   end
 
-  def advance_to_midnight_of_next_date_in_cycle(starting_from)
-    date = starting_from
-    begin
-      date += 1
-    end until date_in_the_cycle?(date)
-    date
+  def midnight_of_next_date_in_cycle_after(date)
+    date += 1
+    next_date_in_cycle_after(date)
+  end
+
+  def next_date_in_cycle_after(date)
+    date += 1 until date_in_the_cycle?(date)
+    DateTime.civil(date.year, date.month, date.day, 0, 0, 0)
   end
 end
