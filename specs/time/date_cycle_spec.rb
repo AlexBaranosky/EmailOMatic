@@ -21,5 +21,3 @@ describe DateCycle do
     Cycle.new(1).should == Cycle.new(1)
   end
 end
-
-p [1].to_set
