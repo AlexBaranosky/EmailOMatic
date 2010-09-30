@@ -1,19 +1,15 @@
 require 'date'
+require 'set'
 require File.dirname(__FILE__) + '/../../src/general/infinite_enumerable'
 
 module DateCycle
   include InfiniteEnumerable
 
-  def self.included(clazz)
-    clazz.class_eval do
-      def ==(other)
-        other.kind_of? self.class and @dates
-        dates.to_set == other.dates.to_set
-      end
-    end
+  def ==(other)
+    other.kind_of? self.class and @dates.to_set == other.dates.to_set
   end
 
-  def initialize(*dates)
+  def initialize(* dates)
     raise 'invalid date' unless dates.size > 0 && valid?(dates)
     @dates = dates
   end

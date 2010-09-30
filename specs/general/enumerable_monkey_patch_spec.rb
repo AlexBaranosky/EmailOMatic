@@ -1,5 +1,4 @@
 require 'spec'
-require File.dirname(__FILE__) + '/../../src/general/array_extensions'
 require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
 
 class InfiniteEnumerableForTest
