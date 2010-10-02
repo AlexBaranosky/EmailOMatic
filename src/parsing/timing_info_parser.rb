@@ -8,7 +8,7 @@ class TimingInfoParser
   def self.new(s)
     parsers = [DayOfWeekBasedTimingInfoParser, DayOfMonthBasedTimingInfoParser, DateBasedTimingInfoParser]
     parsers.each { |p| return p.new if p.can_parse? s }
-    raise 'Cannot parse reminders.  Invalid format.'
+    raise 'Cannot parse timing infos.  Invalid format.'
   end
 end
 
@@ -23,13 +23,13 @@ end
 class DayOfWeekBasedTimingInfoParser
   include ParsesTimingInfo
 
-  def self.can_parse?(s)
-    Date::DAYS_OF_WEEK.any? { |day| s.include? day }
-  end
+  DAYS_OF_WEEK_REGEX = /^\s*(#{Date::DAYS_OF_WEEK.join('|')})/i
+
+  def self.can_parse?(s); s =~ DAYS_OF_WEEK_REGEX end
 
   def parse_tokens(tokens)
     def parse_token(token)
-      token =~ /\s*(Sundays|Mondays|Tuesdays|Wednesdays|Thursdays|Fridays|Saturdays)\s*/i
+      token =~ DAYS_OF_WEEK_REGEX
       $1.downcase.to_sym
     end
 
@@ -59,11 +59,14 @@ end
 class DateBasedTimingInfoParser
   include ParsesTimingInfo
 
-  def self.can_parse?(s); s =~ /^\s*\d{4}\s+\d{1,2}\s+\d{1,2}\s*/ end
+  DATE_REGEX = /^\s*(\d{4})\s+(\d{1,2})\s+(\d{1,2})/
+
+  def self.can_parse?(s); s =~ DATE_REGEX end
 
   def parse_tokens(tokens)
     def parse_token(token)
-      year, month, day = token.split(' ').map(&:to_i)
+      token =~ DATE_REGEX
+      year, month, day = [$1, $2, $3].map(&:to_i)
       DateTime.civil(year, month, day)
     end
 

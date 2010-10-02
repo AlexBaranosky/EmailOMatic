@@ -25,13 +25,7 @@ describe ReminderParser do
     actual_reminder.should == expected_reminder
   end
 
-  it 'should parse a day-based line with a specified frequency (in weeks) into a proper Reminder object' do
-    actual_reminder = parser.parse(%Q|Sundays 2 "#{MESSAGE}"|)
-    expected_reminder = Reminder.new(MESSAGE,  TimingInfo.new(DaysOfWeek.new(:sundays)))
-    actual_reminder.should == expected_reminder
-  end
-
-  it 'should parse a day-based line into a proper Reminder object' do
+  it 'should parse a day-of-week-based line into a proper Reminder object' do
     actual_reminder = parser.parse(%Q|Thursdays "#{MESSAGE}"|)
     expected_reminder = Reminder.new(MESSAGE, TimingInfo.new(DaysOfWeek.new(:thursdays)))
     actual_reminder.should == expected_reminder
