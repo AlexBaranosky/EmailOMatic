@@ -44,7 +44,7 @@ class DayOfMonthBasedTimingInfoParser
 
   ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }
 
-  DAY_OF_MONTH_REGEX = /^\s*Every (\d{1,2}|#{ORDINALS.join('|')}) of the month/i
+  DAY_OF_MONTH_REGEX = /^\s*Every (#{ORDINALS.join('|')}) of the month/i
 
   def self.can_parse?(s); s =~ DAY_OF_MONTH_REGEX end
 

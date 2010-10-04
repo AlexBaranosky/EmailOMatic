@@ -12,7 +12,7 @@ describe TimingInfoParser do
   end
 
   it 'should create a day of month based timing info parser' do
-    should_create_proper_parser(' Every 6 of the month  & Every 8 of the month', DayOfMonthBasedTimingInfoParser)
+    should_create_proper_parser(' Every 6th of the month  & Every 8th of the month', DayOfMonthBasedTimingInfoParser)
   end
   
   it 'should raise error if bad string' do
