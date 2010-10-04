@@ -1,3 +1,4 @@
+require 'activesupport'
 require File.dirname(__FILE__) + '/../../src/general/date_extensions'
 require File.dirname(__FILE__) + '/../../src/time/timing_info'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
@@ -8,7 +9,7 @@ class TimingInfoParser
   def self.new(s)
     parsers = [DayOfWeekBasedTimingInfoParser, DayOfMonthBasedTimingInfoParser, DateBasedTimingInfoParser]
     parsers.each { |p| return p.new if p.can_parse? s }
-    raise 'Cannot parse timing infos.  Invalid format.'
+    raise 'Cannot create timing info parser.  Invalid format.'
   end
 end
 
@@ -40,8 +41,10 @@ end
 
 class DayOfMonthBasedTimingInfoParser
   include ParsesTimingInfo
-  
-  DAY_OF_MONTH_REGEX = /^\s*Every (\d{1,2}) of the month/i
+
+  ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }
+
+  DAY_OF_MONTH_REGEX = /^\s*Every (\d{1,2}|#{ORDINALS.join('|')}) of the month/i
 
   def self.can_parse?(s); s =~ DAY_OF_MONTH_REGEX end
 
@@ -66,7 +69,7 @@ class DateBasedTimingInfoParser
   def parse_tokens(tokens)
     def parse_token(token)
       token =~ DATE_REGEX
-      year, month, day = [$1, $2, $3].map(&:to_i)
+      year, month, day = [$1, $2, $3].map(& :to_i)
       DateTime.civil(year, month, day)
     end
 
