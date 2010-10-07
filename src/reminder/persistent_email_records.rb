@@ -7,8 +7,7 @@ class PersistentEmailRecords
   end
 
   def num_reminders_already_sent_today
-    return 0 if its_a_new_day?
-    recorded_value_of("NUM_REMINDERS_SENT_ALREADY_TODAY")
+    its_a_new_day? ? 0 : recorded_value_of("NUM_REMINDERS_SENT_ALREADY_TODAY")
   end
 
   def record_num_of_reminders_and_todays_wday_value(due_reminder_list)

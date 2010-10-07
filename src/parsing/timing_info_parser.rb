@@ -43,7 +43,6 @@ class DayOfMonthBasedTimingInfoParser
   include ParsesTimingInfo
 
   ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }
-
   DAY_OF_MONTH_REGEX = /^\s*Every (#{ORDINALS.join('|')}) of the month/i
 
   def self.can_parse?(s); s =~ DAY_OF_MONTH_REGEX end
@@ -69,7 +68,7 @@ class DateBasedTimingInfoParser
   def parse_tokens(tokens)
     def parse_token(token)
       token =~ DATE_REGEX
-      year, month, day = [$1, $2, $3].map(& :to_i)
+      year, month, day = [$1, $2, $3].map(&:to_i)
       DateTime.civil(year, month, day)
     end
 

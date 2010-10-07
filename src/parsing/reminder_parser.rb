@@ -8,8 +8,7 @@ class ReminderParser
   end
 
   def parse(line)
-    return nil unless reminder_line?(line)
-    parse_reminder(line)
+    reminder_line?(line) ? parse_reminder(line) : nil
   end
 
   private
