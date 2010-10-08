@@ -7,7 +7,7 @@ require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 describe ReminderParser do
 
   parser = ReminderParser.new
-  RR::mock(TimingInfoParser).new.with_any_args { ReminderTimingInfoParserForTest.new }
+  RR::stub(TimingInfoParser).new { ReminderTimingInfoParserForTest.new }
 
   it "should ignore comments" do
     parser.parse(' # a comment here').should == nil
