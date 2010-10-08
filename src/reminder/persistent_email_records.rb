@@ -2,8 +2,8 @@ require 'date'
 require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
 
 class PersistentEmailRecords
-  def initialize(records_file = File.dirname(__FILE__) + '/../../resources/persistent_email_records.txt')
-    @records_file = records_file
+  def initialize
+    @records_file = File.dirname(__FILE__) + '/../../resources/persistent_email_records.txt'
   end
 
   def num_reminders_already_sent_today

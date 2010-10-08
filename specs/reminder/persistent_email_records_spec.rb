@@ -25,7 +25,8 @@ describe PersistentEmailRecords do
   end
 
   def given_records_last_updated(wday)
-    @records = PersistentEmailRecords.new(fake_records_file(wday))
+    @records = PersistentEmailRecords.new
+    @records.instance_variable_set(:@records_file, fake_records_file(wday))
   end
 end
 
