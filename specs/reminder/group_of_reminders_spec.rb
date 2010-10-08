@@ -6,8 +6,8 @@ require File.dirname(__FILE__) + '/../../src/reminder/group_of_reminders'
 
 describe GroupOfReminders do
 
-  reminders = GroupOfReminders.new([])
-  
+  reminders = GroupOfReminders.new
+
   RR::stub(PersistentEmailRecords).new do
     email_records = RR::stub!.record_num_of_reminders_and_todays_wday_value.with_any_args.subject
     RR::stub(email_records).num_reminders_already_sent_today { 0 }.subject
@@ -25,7 +25,7 @@ describe GroupOfReminders do
   end
 
   it 'should return the reminders for the next two days when asked for the reminders which are ready to be sent' do
-    reminders = GroupOfReminders.new([stub_reminder, stub_reminder])
+    reminders = GroupOfReminders.new(stub_reminder, stub_reminder)
     reminders.reminders_ready_to_be_sent.size.should == 2
   end
 end

@@ -7,10 +7,6 @@ class Emailer
   PASSWORD = 'P4zzW0rd!'
   FROM    = %Q|"EmailOMatic Reminder Service" <#{SENDER_EMAIL}>|
 
-  def initialize(email_formatter = ReminderEmailFormatter.new)
-    @email_formatter = email_formatter
-  end
-
   def send_email(reminders, recipients)
     recipients.each do |recipient|
       email = format_email(reminders, recipient)
@@ -21,7 +17,7 @@ class Emailer
   private
 
   def format_email(reminders, recipient)
-    message_body = @email_formatter.format_due_reminders_for_email(reminders)
+    message_body = ReminderEmailFormatter.new.format_due_reminders_for_email(reminders)
 
     <<MESSAGE_END
 From:     #{FROM}
