@@ -7,4 +7,9 @@ describe String do
     ' '.blank?.should == true
     'XXXXXX'.blank?.should == false
   end
+  
+  it 'should tell it matches a regex' do
+    'a'.matches?(/a/).should == true
+    ' '.matches?(/a/).should == false
+  end
 end

@@ -1,5 +1,6 @@
-require 'activesupport'
+require 'active_support'
 require File.dirname(__FILE__) + '/../../src/general/date_extensions'
+require File.dirname(__FILE__) + '/../../src/general/string_extensions'
 require File.dirname(__FILE__) + '/../../src/time/timing_info'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
@@ -25,7 +26,7 @@ class DayOfWeekBasedTimingInfoParser
 
   DAYS_OF_WEEK_REGEX = /^\s*(#{Date::DAYS_OF_WEEK.join('|')})/i
 
-  def self.can_parse?(s); s =~ DAYS_OF_WEEK_REGEX end
+  def self.can_parse?(s); s.matches? DAYS_OF_WEEK_REGEX end
 
   def parse_tokens(tokens)
     def parse_token(token)
@@ -42,17 +43,19 @@ class DayOfMonthBasedTimingInfoParser
   include ParsesTimingInfo
 
   ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }
-  DAY_OF_MONTH_REGEX = /^\s*Every (#{ORDINALS.join('|')}) of the month/i
+  ORDINAL_REGEX = /#{ORDINALS.join('|')}/i
 
-  def self.can_parse?(s); s =~ DAY_OF_MONTH_REGEX end
+  def self.can_parse?(s)
+    s.matches?(/^Every /i) and s.matches?(/ of the month/i)
+  end
 
   def parse_tokens(tokens)
     def parse_token(token)
-      token =~ DAY_OF_MONTH_REGEX
-      $1.to_i
+      ordinals = token.scan(ORDINAL_REGEX)
+      ordinals.map(&:to_i)
     end
 
-    mdays = tokens.map { |t| parse_token t }
+    mdays = tokens.map { |t| parse_token t }.flatten
     DaysOfMonth.new(*mdays)
   end
 end
@@ -62,7 +65,7 @@ class DateBasedTimingInfoParser
 
   DATE_REGEX = /^\s*(\d{4})\s+(\d{1,2})\s+(\d{1,2})/
 
-  def self.can_parse?(s); s =~ DATE_REGEX end
+  def self.can_parse?(s); s.matches?(DATE_REGEX) end
 
   def parse_tokens(tokens)
     def parse_token(token)

@@ -5,6 +5,10 @@ require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 describe DayOfWeekBasedTimingInfoParser do
   parser = DayOfWeekBasedTimingInfoParser.new
 
+  it 'should parse properly formatted strings' do
+    DayOfWeekBasedTimingInfoParser.can_parse?('Sundays').should == true  
+  end
+
   it 'should parse timing infos out of a day of week based string' do
     parser.parse('  Sundays  ').should == TimingInfo.new(DaysOfWeek.new(:sundays))
   end

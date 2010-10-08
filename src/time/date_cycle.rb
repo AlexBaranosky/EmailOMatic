@@ -10,7 +10,7 @@ module DateCycle
   end
 
   def initialize(*dates)
-    raise 'invalid date' unless dates.size > 0 && valid?(dates)
+    raise "invalid date input: '#{dates}'" unless dates.size > 0 && valid?(dates)
     @dates = dates
   end
 

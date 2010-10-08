@@ -30,5 +30,4 @@ describe ReminderParser do
     expected_reminder = Reminder.new(MESSAGE, TimingInfo.new(DaysOfWeek.new(:thursdays)))
     actual_reminder.should == expected_reminder
   end
-
 end
