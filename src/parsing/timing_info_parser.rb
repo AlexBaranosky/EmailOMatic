@@ -5,7 +5,6 @@ require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 
 class TimingInfoParser
-
   def self.new(s)
     parsers = [DayOfWeekBasedTimingInfoParser, DayOfMonthBasedTimingInfoParser, DateBasedTimingInfoParser]
     parsers.each { |p| return p.new if p.can_parse? s }

@@ -31,7 +31,6 @@ end
 
 def fake_records_file(wday)
   file_name = File.dirname(__FILE__) + '/../../resources/fake_persistent_email_records.txt'
-
   File.open(file_name, 'w') do |f|
     f.write("NUM_REMINDERS_SENT_ALREADY_TODAY: #{NUM_REMINDERS_ALREADY_SENT_TODAY}\nLAST_PERSIST_WDAY: #{wday}")
   end
