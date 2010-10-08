@@ -43,15 +43,14 @@ class DayOfMonthBasedTimingInfoParser
   include ParsesTimingInfo
 
   ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }
-  ORDINAL_REGEX = /#{ORDINALS.join('|')}/i
 
   def self.can_parse?(s)
-    s.matches?(/^Every /i) and s.matches?(/ of the month/i)
+    s.matches?(/^\s*Every /i) and s.matches?(/ of the month\s*$/i)
   end
 
   def parse_tokens(tokens)
     def parse_token(token)
-      ordinals = token.scan(ORDINAL_REGEX)
+      ordinals = token.scan(/#{ORDINALS.join('|')}/i)
       ordinals.map(&:to_i)
     end
 
