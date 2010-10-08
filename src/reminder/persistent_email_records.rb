@@ -12,7 +12,7 @@ class PersistentEmailRecords
 
   def record_num_of_reminders_and_todays_wday_value(due_reminder_list)
     record =  "NUM_REMINDERS_SENT_ALREADY_TODAY: #{due_reminder_list.size}" << "\n"
-    record << "LAST_PERSIST_WDAY: #{today}" << "\n"
+    record << "LAST_PERSIST_WDAY: #{DateTime.now.wday}" << "\n"
     File.open(@records_file, 'w') { |f| f.write record }
   end
 
