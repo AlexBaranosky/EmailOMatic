@@ -46,7 +46,7 @@ class DayOfMonthBasedTimingInfoParser
   ORDINAL_REGEX = /#{ORDINALS.join('|')}/i
 
   def self.can_parse?(s)
-    s.matches?(/^Every /i) and s.matches?(/ of the month/i)
+    s.matches?(/^\s*Every /i) and s.matches?(/ of the month\s*$/i)
   end
 
   def parse_tokens(tokens)
