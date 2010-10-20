@@ -1,9 +1,9 @@
 require 'date'
 require 'set'
-require File.dirname(__FILE__) + '/../../src/general/infinite_enumerable'
+require File.dirname(__FILE__) + '/../../src/general/lazy_enumerable'
 
 module DateCycle
-  include InfiniteEnumerable
+  include LazyEnumerable
 
   def ==(other)
     other.kind_of? self.class and @dates.to_set == other.dates.to_set

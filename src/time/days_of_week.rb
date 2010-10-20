@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../src/general/infinite_enumerable'
+require File.dirname(__FILE__) + '/../../src/general/lazy_enumerable'
 require File.dirname(__FILE__) + '/date_cycle'
 require 'set'
 
@@ -11,7 +11,7 @@ class DaysOfWeek
   WDAYS.default = nil
 
   def valid?(day_syms)
-    day_syms.all? { |d| WDAYS[d] != nil }
+    day_syms.none? { |d| WDAYS[d].nil? }
   end
 
   def date_in_the_cycle?(date)

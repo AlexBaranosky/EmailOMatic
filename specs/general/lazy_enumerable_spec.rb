@@ -1,8 +1,8 @@
-require "spec"
-require File.dirname(__FILE__) + '/../../src/general/infinite_enumerable'
+require "rspec"
+require File.dirname(__FILE__) + '/../../src/general/lazy_enumerable'
 
 class InfiniteEnumerableForTest
-  include InfiniteEnumerable
+  include LazyEnumerable
 
   def each
     count = 0
@@ -10,7 +10,7 @@ class InfiniteEnumerableForTest
   end
 end
 
-describe InfiniteEnumerable do
+describe LazyEnumerable do
   #TODO: should be tests covering this infinite enumerable stuff.  Fix that.
   # it "should be able select without infinitely recurring" 
 end

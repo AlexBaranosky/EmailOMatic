@@ -1,4 +1,4 @@
-require "spec"
+require "rspec"
 require File.dirname(__FILE__) + '/../../src/time/date_cycle'
 
 class Cycle

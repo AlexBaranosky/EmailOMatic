@@ -1,4 +1,4 @@
-require 'spec'
+require 'rspec'
 require 'timecop'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 
@@ -59,7 +59,7 @@ describe DaysOfWeek do
 
   it 'should define each() and include InfiniteEnumerable' do
     day = DaysOfWeek.new(:wednesdays)
-    day.kind_of?(InfiniteEnumerable).should == true
+    day.kind_of?(LazyEnumerable).should == true
 
     defined? day.each.should == true
   end

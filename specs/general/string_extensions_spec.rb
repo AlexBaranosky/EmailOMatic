@@ -1,4 +1,4 @@
-require 'spec'
+require 'rspec'
 require File.dirname(__FILE__) + '/../../src/general/string_extensions'
 
 describe String do

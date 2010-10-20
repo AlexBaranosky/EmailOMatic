@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
 
-module InfiniteEnumerable
+module LazyEnumerable
   include Enumerable
 
   def select(&block)

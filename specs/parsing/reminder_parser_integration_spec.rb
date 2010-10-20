@@ -1,4 +1,4 @@
-require 'spec'
+require 'rspec'
 require 'date'
 require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
 

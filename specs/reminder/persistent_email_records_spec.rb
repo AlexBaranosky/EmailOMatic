@@ -1,4 +1,4 @@
-require 'spec'
+require 'rspec'
 require File.dirname(__FILE__) + '/../../src/reminder/persistent_email_records'
 require File.dirname(__FILE__) + '/../../src/reminder/group_of_reminders'
 

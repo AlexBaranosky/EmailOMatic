@@ -1,4 +1,4 @@
-require "spec"
+require "rspec"
 require File.dirname(__FILE__) + '/../src/email_o_matic'
 
 describe EmailOMatic do

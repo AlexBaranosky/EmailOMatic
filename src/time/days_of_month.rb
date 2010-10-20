@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../general/infinite_enumerable'
+require File.dirname(__FILE__) + '/../general/lazy_enumerable'
 require File.dirname(__FILE__) + '/date_cycle'
 require 'set'
 

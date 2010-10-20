@@ -1,4 +1,4 @@
-require "spec"
+require "rspec"
 require "timecop"
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 
@@ -38,7 +38,7 @@ describe DaysOfMonth do
 
   it "should define 'each' and include InfiniteEnumerable" do
     days = DaysOfMonth.new(1)
-    days.kind_of?(InfiniteEnumerable).should == true
+    days.kind_of?(LazyEnumerable).should == true
 
     defined? days.each.should == true
   end

@@ -1,4 +1,4 @@
-require 'spec'
+require 'rspec'
 require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
 
 class InfiniteEnumerableForTest

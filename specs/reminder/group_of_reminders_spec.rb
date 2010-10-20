@@ -1,4 +1,4 @@
-require 'spec'
+require 'rspec'
 require 'rr'
 require File.dirname(__FILE__) + '/../../src/reminder/persistent_email_records'
 require File.dirname(__FILE__) + '/../../src/reminder/reminder'
@@ -8,9 +8,9 @@ describe GroupOfReminders do
 
   reminders = GroupOfReminders.new
 
-  RR::stub(PersistentEmailRecords).new do
-    email_records = RR::stub!.record_num_of_reminders_and_todays_wday_value.subject
-    RR::stub(email_records).num_reminders_already_sent_today { 0 }.subject
+  RR::new_instance_of(PersistentEmailRecords) do |records|
+    RR::mock(records).record_num_of_reminders_and_todays_wday_value
+    RR::mock(records).num_reminders_already_sent_today { 0 }
   end
 
   it "should persist reminder's size and day" do
