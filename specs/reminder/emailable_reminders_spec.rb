@@ -14,19 +14,19 @@ describe EmailableReminders do
   end
 
   it "should persist reminder's size and day" do
-    reminders.persist_due_reminder_count_and_day
+    reminders.send(:persist_due_reminder_count_and_day)
     #TODO: this spec appears to not be complete! fix that!
   end
 
   it 'should know if it is ready to be sent' do
-    reminders.ready_to_be_sent?.should == false
+    reminders.send(:ready_to_be_sent?).should == false
     reminders << stub_reminder
-    reminders.ready_to_be_sent?.should == true
+    reminders.send(:ready_to_be_sent?).should == true
   end
 
   it 'should return the reminders for the next two days when asked for the reminders which are ready to be sent' do
     reminders = EmailableReminders.new(stub_reminder, stub_reminder)
-    reminders.reminders_ready_to_be_sent.size.should == 2
+    reminders.send(:reminders_ready_to_be_sent).size.should == 2
   end
 end
 
