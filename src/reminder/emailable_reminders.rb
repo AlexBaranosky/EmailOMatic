@@ -2,12 +2,12 @@ require File.dirname(__FILE__) + '/../../src/reminder/persistent_email_records'
 
 class EmailableReminders
   def initialize(*reminder_list)
-    @reminder_list = reminder_list
+    @reminders = reminder_list
     @email_records = PersistentEmailRecords.new
   end
 
   def <<(reminder)
-    @reminder_list << reminder
+    @reminders << reminder
   end
 
   def send_due_reminders(recipients)
@@ -18,7 +18,7 @@ class EmailableReminders
   end
 
   def reminders_ready_to_be_sent
-    @reminder_list.select { |r| r.days_from_now_due? 5 }
+    @reminders.select { |r| r.days_from_now_due? 5 }
   end
 
   private

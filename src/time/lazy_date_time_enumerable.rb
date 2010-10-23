@@ -2,7 +2,7 @@ require 'date'
 require 'set'
 require File.dirname(__FILE__) + '/../../src/general/lazy_enumerable'
 
-module DateCycle
+module LazyDateTimeEnumerable
   include LazyEnumerable
 
   def ==(other)
