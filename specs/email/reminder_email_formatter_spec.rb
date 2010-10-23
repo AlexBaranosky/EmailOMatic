@@ -3,7 +3,7 @@ require 'timecop'
 require File.dirname(__FILE__) + '/../../src/email/reminder_email_formatter'
 require File.dirname(__FILE__) + '/../../src/reminder/reminder'
 require File.dirname(__FILE__) + '/../../src/reminder/emailable_reminders'
-require File.dirname(__FILE__) + '/../../src/time/timing_info'
+require File.dirname(__FILE__) + '/../../src/time/calendar'
 
 describe ReminderEmailFormatter do
   formatter = ReminderEmailFormatter.new
@@ -12,8 +12,8 @@ describe ReminderEmailFormatter do
   it "should format reminders into a email message" do
     SATURDAY_SEP_25 = Date.civil(2010, 9, 25)
     Timecop.freeze(SATURDAY_SEP_25) do
-      reminder1 = Reminder.new("message 1", TimingInfo.new(DaysOfWeek.new(:sundays)))
-      reminder2 = Reminder.new("message 2", TimingInfo.new(DaysOfWeek.new(:mondays)))
+      reminder1 = Reminder.new("message 1", Calendar.new(DaysOfWeek.new(:sundays)))
+      reminder2 = Reminder.new("message 2", Calendar.new(DaysOfWeek.new(:mondays)))
       reminders = EmailableReminders.new(reminder1, reminder2)
 
       formatter.format_due_reminders_for_email(reminders).should ==

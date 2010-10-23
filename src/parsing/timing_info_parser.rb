@@ -1,28 +1,28 @@
 require 'active_support'
 require File.dirname(__FILE__) + '/../../src/general/date_extensions'
 require File.dirname(__FILE__) + '/../../src/general/string_extensions'
-require File.dirname(__FILE__) + '/../../src/time/timing_info'
+require File.dirname(__FILE__) + '/../../src/time/calendar'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 
-class TimingInfoParser
-  def self.new(s)
-    parsers = [DayOfWeekBasedTimingInfoParser, DayOfMonthBasedTimingInfoParser, DateBasedTimingInfoParser]
+class CalendarParser
+  def self.for(s)
+    parsers = [DayOfWeekBasedCalendarParser, DayOfMonthBasedCalendarParser, DateBasedCalendarParser]
     parsers.each { |p| return p.new if p.can_parse? s }
     raise 'Cannot create timing info parser.  Invalid format.'
   end
 end
 
-module ParsesTimingInfo
+module ParsesCalendars
   def parse(timing_info_string)
     tokens = timing_info_string.split('&')
     reminder_times = parse_tokens(tokens)
-    TimingInfo.new(reminder_times)
+    Calendar.new(reminder_times)
   end
 end
 
-class DayOfWeekBasedTimingInfoParser
-  include ParsesTimingInfo
+class DayOfWeekBasedCalendarParser
+  include ParsesCalendars
 
   DAYS_OF_WEEK_REGEX = /^\s*(#{Date::DAYS_OF_WEEK.join('|')})/i
 
@@ -39,8 +39,8 @@ class DayOfWeekBasedTimingInfoParser
   end
 end
 
-class DayOfMonthBasedTimingInfoParser
-  include ParsesTimingInfo
+class DayOfMonthBasedCalendarParser
+  include ParsesCalendars
 
   ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }
 
@@ -59,8 +59,8 @@ class DayOfMonthBasedTimingInfoParser
   end
 end
 
-class DateBasedTimingInfoParser
-  include ParsesTimingInfo
+class DateBasedCalendarParser
+  include ParsesCalendars
 
   DATE_REGEX = /^\s*(\d{4})\s+(\d{1,2})\s+(\d{1,2})/
 

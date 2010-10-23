@@ -26,7 +26,7 @@ describe EmailableReminders do
 
   it 'should return the reminders for the next two days when asked for the reminders which are ready to be sent' do
     reminders = EmailableReminders.new(stub_reminder, stub_reminder)
-    reminders.send(:reminders_ready_to_be_sent).size.should == 2
+    reminders.reminders_ready_to_be_sent.size.should == 2
   end
 end
 

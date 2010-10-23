@@ -1,4 +1,4 @@
-class TimingInfo
+class Calendar
 
   def initialize(date_times)
     @date_times = date_times

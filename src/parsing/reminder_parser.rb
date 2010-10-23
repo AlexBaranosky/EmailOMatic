@@ -14,8 +14,8 @@ class ReminderParser
   end
 
   def parse_reminder(line)
-    timing_info_string, reminder_message = line.chomp.split("\"")
-    timing_info = TimingInfoParser.new(timing_info_string).parse(timing_info_string)
-    Reminder.new(reminder_message, timing_info)
+    timing_info_part, message_part = line.chomp.split("\"")
+    timing_info = CalendarParser.for(timing_info_part).parse(timing_info_part)
+    Reminder.new(message_part, timing_info)
   end
 end
