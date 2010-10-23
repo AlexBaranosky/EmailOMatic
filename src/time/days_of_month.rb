@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../general/lazy_enumerable'
+require File.dirname(__FILE__) + '/../extensions/lazy_enumerable'
 require File.dirname(__FILE__) + '/lazy_date_time_enumerable'
 require 'set'
 

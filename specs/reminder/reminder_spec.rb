@@ -2,7 +2,7 @@ require 'rspec'
 require 'rr'
 require File.dirname(__FILE__) + '/../../src/reminder/reminder'
 require File.dirname(__FILE__) + '/../../src/time/calendar'
-require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
+require File.dirname(__FILE__) + '/../../src/extensions/enumerable_extensions'
 
 FRIDAY_APRIL_2 = DateTime.parse("2010/4/2")
 SATURDAY_APRIL_3 = DateTime.parse("2010/4/3")

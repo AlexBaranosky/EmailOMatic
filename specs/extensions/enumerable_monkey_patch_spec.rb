@@ -1,5 +1,5 @@
 require 'rspec'
-require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
+require File.dirname(__FILE__) + '/../../src/extensions/enumerable_extensions'
 
 class InfiniteEnumerableForTest
   include Enumerable

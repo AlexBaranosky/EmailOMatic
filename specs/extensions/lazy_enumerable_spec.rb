@@ -1,5 +1,5 @@
 require "rspec"
-require File.dirname(__FILE__) + '/../../src/general/lazy_enumerable'
+require File.dirname(__FILE__) + '/../../src/extensions/lazy_enumerable'
 
 class InfiniteEnumerableForTest
   include LazyEnumerable

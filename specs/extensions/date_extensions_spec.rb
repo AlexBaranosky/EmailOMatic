@@ -1,5 +1,5 @@
 require 'rspec'
-require File.dirname(__FILE__) + '/../../src/general/date_extensions'
+require File.dirname(__FILE__) + '/../../src/extensions/date_extensions'
 
 
 describe Date do

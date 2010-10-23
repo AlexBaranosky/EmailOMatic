@@ -1,5 +1,5 @@
 require 'rspec'
-require File.dirname(__FILE__) + '/../../src/general/string_extensions'
+require File.dirname(__FILE__) + '/../../src/extensions/string_extensions'
 
 describe String do
   it 'should tell if it is blank' do

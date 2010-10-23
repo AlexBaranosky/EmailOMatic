@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/calendar_parser'
 require File.dirname(__FILE__) + '/../reminder/reminder'
-require File.dirname(__FILE__) + '/../../src/general/string_extensions'
+require File.dirname(__FILE__) + '/../../src/extensions/string_extensions'
 
 class ReminderParser
   def parse(line)

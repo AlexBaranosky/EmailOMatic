@@ -1,6 +1,6 @@
 require 'active_support'
-require File.dirname(__FILE__) + '/../../src/general/date_extensions'
-require File.dirname(__FILE__) + '/../../src/general/string_extensions'
+require File.dirname(__FILE__) + '/../../src/extensions/date_extensions'
+require File.dirname(__FILE__) + '/../../src/extensions/string_extensions'
 require File.dirname(__FILE__) + '/../../src/time/calendar'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
