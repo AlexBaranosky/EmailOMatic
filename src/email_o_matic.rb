@@ -3,7 +3,7 @@ require 'date'
 
 class EmailOMatic
   def email_reminders_to(recipients)
-    reminders = ReminderLoader.new.load
+    reminders = ReminderLoader.load
     reminders.send_due_reminders(recipients)
   end
 end
