@@ -6,21 +6,20 @@ require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 
 module CalendarParser
-  def self.for(s)
-    parsers = [DayOfWeekBasedCalendarParser, DayOfMonthBasedCalendarParser, DateBasedCalendarParser]
-    parsers.each { |p| return p.new if p.can_parse? s }
+  def self.for(string)
+    [DayOfWeekBased, DayOfMonthBased, DateBased].each { |parser| return parser.new if parser.can_parse? string }
     raise 'Cannot create timing info parser.  Invalid format.'
   end
 
   class Base
-    def parse(calendar_string)
-      tokens         = calendar_string.split('&')
+    def parse(string)
+      tokens         = string.split('&')
       reminder_times = parse_tokens(tokens)
       Calendar.new(reminder_times)
     end
   end
 
-  class DayOfWeekBasedCalendarParser < Base
+  class DayOfWeekBased < Base
 
     DAYS_OF_WEEK_REGEX = /^\s*(#{Date::DAYS_OF_WEEK.join('|')})/i
 
@@ -37,7 +36,7 @@ module CalendarParser
     end
   end
 
-  class DayOfMonthBasedCalendarParser < Base
+  class DayOfMonthBased < Base
 
     ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }
 
@@ -56,7 +55,7 @@ module CalendarParser
     end
   end
 
-  class DateBasedCalendarParser < Base
+  class DateBased < Base
 
     DATE_REGEX = /^\s*(\d{4})\s+(\d{1,2})\s+(\d{1,2})/
 

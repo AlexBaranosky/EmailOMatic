@@ -2,13 +2,13 @@ require 'rspec'
 require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 
-describe CalendarParser::DayOfMonthBasedCalendarParser do
-  parser = CalendarParser::DayOfMonthBasedCalendarParser.new
+describe CalendarParser::DayOfMonthBased do
+  parser = CalendarParser::DayOfMonthBased.new
 
   it 'can parse properly formatted strings' do
-    CalendarParser::DayOfMonthBasedCalendarParser.can_parse?('Every 21st of the month').should == true
-    CalendarParser::DayOfMonthBasedCalendarParser.can_parse?('Every 21st and 28th of the month').should == true
-    CalendarParser::DayOfMonthBasedCalendarParser.can_parse?('Every 21st, 22nd and 28th of the month').should == true
+    CalendarParser::DayOfMonthBased.can_parse?('Every 21st of the month').should == true
+    CalendarParser::DayOfMonthBased.can_parse?('Every 21st and 28th of the month').should == true
+    CalendarParser::DayOfMonthBased.can_parse?('Every 21st, 22nd and 28th of the month').should == true
   end
 
   it 'should parse calendars from ordinal numbers' do
