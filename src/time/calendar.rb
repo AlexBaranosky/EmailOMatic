@@ -4,7 +4,7 @@ class Calendar
     @date_times = date_times
   end
 
-  def next_time
+  def next_date_time
     @date_times.select { |time| time - DateTime.now > 0 }.first
   end
 

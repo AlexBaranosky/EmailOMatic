@@ -11,7 +11,7 @@ class ReminderEmailFormatter
   private
 
   def format_reminder(idx, reminder)
-    soonest_reminder_time = reminder.next_time_to_remind
+    soonest_reminder_time = reminder.next_date_time
     "#{(idx + 1)}. #{soonest_reminder_time.as_day} #{soonest_reminder_time.m_d_y}\n#{reminder.message}"
   end
 end

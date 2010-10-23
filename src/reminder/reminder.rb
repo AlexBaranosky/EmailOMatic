@@ -9,11 +9,12 @@ class Reminder
   end
 
   def days_from_now_due?(num_days)
-    next_time_to_remind and next_time_to_remind - DateTime.now < num_days
+    next_date_time and next_date_time - DateTime.now < num_days
   end
 
-  def next_time_to_remind
-    @calendar.next_time
+  #TODO: somethign screwy here: should this method exist?
+  def next_date_time
+    @calendar.next_date_time
   end
 
   def ==(other)

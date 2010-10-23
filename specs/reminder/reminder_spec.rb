@@ -14,14 +14,14 @@ describe Reminder do
   it "should give next time to remind for date-based reminders" do
     future_calendar = stub_calendar(DateTime.now + DAYS_IN_THE_FUTURE)
     reminder = Reminder.new(MESSAGE_, future_calendar)
-    reminder.next_time_to_remind.should_not be_nil
+    reminder.next_date_time.should_not be_nil
   end
 
   it "should give next time to remind for day of the week based reminders" do
     fridays = stub_calendar(DaysOfWeek.new(:fridays).first)
     reminder = Reminder.new(MESSAGE_, fridays)
 
-    next_time = reminder.next_time_to_remind
+    next_time = reminder.next_date_time
 
     next_time.wday.should == 5
   end
@@ -34,5 +34,5 @@ describe Reminder do
 end
 
 def stub_calendar(time)
-  RR::stub!.next_time { time }.subject
+  RR::stub!.next_date_time { time }.subject
 end
