@@ -12,7 +12,7 @@ class Reminder
     next_date_time and next_date_time - DateTime.now < num_days
   end
 
-  #TODO: somethign screwy here: should this method exist?
+  #TODO: something screwy here: should this method exist?
   def next_date_time
     @calendar.next_date_time
   end

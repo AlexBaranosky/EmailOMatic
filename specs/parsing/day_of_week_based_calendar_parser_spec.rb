@@ -2,11 +2,11 @@ require 'rspec'
 require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 
-describe DayOfWeekBasedCalendarParser do
-  parser = DayOfWeekBasedCalendarParser.new
+describe CalendarParser::DayOfWeekBasedCalendarParser do
+  parser = CalendarParser::DayOfWeekBasedCalendarParser.new
 
   it 'should parse properly formatted strings' do
-    DayOfWeekBasedCalendarParser.can_parse?('Sundays').should == true
+    CalendarParser::DayOfWeekBasedCalendarParser.can_parse?('Sundays').should == true
   end
 
   it 'should parse calendars out of a day of week based string' do

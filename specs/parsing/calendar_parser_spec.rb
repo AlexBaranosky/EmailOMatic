@@ -4,11 +4,11 @@ require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 describe CalendarParser do
 
   it 'should create a date based calendar parser' do
-    should_create_proper_parser(' 2000 1 2  & 2000 1 2   ', DateBasedCalendarParser)
+    should_create_proper_parser(' 2000 1 2  & 2000 1 2   ', CalendarParser::DateBasedCalendarParser)
   end
 
   it 'should create a day of week based calendar parser' do
-    should_create_proper_parser(' Sundays & Saturdays', DayOfWeekBasedCalendarParser)
+    should_create_proper_parser(' Sundays & Saturdays', CalendarParser::DayOfWeekBasedCalendarParser)
   end
 
   it 'should create a day of month based calendar parser' do

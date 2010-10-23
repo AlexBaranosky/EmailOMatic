@@ -5,74 +5,71 @@ require File.dirname(__FILE__) + '/../../src/time/calendar'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 
-class CalendarParser
+module CalendarParser
   def self.for(s)
     parsers = [DayOfWeekBasedCalendarParser, DayOfMonthBasedCalendarParser, DateBasedCalendarParser]
     parsers.each { |p| return p.new if p.can_parse? s }
-    raise 'Cannot create calendar parser.  Invalid format.'
+    raise 'Cannot create timing info parser.  Invalid format.'
   end
-end
 
-module ParsesCalendars
-  def parse(calendar_string)
-    tokens = calendar_string.split('&')
-    reminder_times = parse_tokens(tokens)
-    Calendar.new(reminder_times)
+  class Base
+    def parse(calendar_string)
+      tokens         = calendar_string.split('&')
+      reminder_times = parse_tokens(tokens)
+      Calendar.new(reminder_times)
+    end
   end
-end
 
-class DayOfWeekBasedCalendarParser
-  include ParsesCalendars
+  class DayOfWeekBasedCalendarParser < Base
 
-  DAYS_OF_WEEK_REGEX = /^\s*(#{Date::DAYS_OF_WEEK.join('|')})/i
+    DAYS_OF_WEEK_REGEX = /^\s*(#{Date::DAYS_OF_WEEK.join('|')})/i
 
-  def self.can_parse?(s); s.matches? DAYS_OF_WEEK_REGEX end
+    def self.can_parse?(s); s.matches? DAYS_OF_WEEK_REGEX end
 
-  def parse_tokens(tokens)
-    def parse_token(token)
-      token =~ DAYS_OF_WEEK_REGEX
-      $1.downcase.to_sym
+    def parse_tokens(tokens)
+      def parse_token(token)
+        token =~ DAYS_OF_WEEK_REGEX
+        $1.downcase.to_sym
+      end
+
+      day_syms = tokens.map { |t| parse_token t }
+      DaysOfWeek.new(*day_syms)
+    end
+  end
+
+  class DayOfMonthBasedCalendarParser < Base
+
+    ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }
+
+    def self.can_parse?(s)
+      s.matches?(/^\s*Every /i) and s.matches?(/ of the month\s*$/i)
     end
 
-    day_syms = tokens.map { |t| parse_token t }
-    DaysOfWeek.new(*day_syms)
-  end
-end
+    def parse_tokens(tokens)
+      def parse_token(token)
+        ordinals = token.scan(/#{ORDINALS.join('|')}/i)
+        ordinals.map(&:to_i)
+      end
 
-class DayOfMonthBasedCalendarParser
-  include ParsesCalendars
-
-  ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }
-
-  def self.can_parse?(s)
-    s.matches?(/^\s*Every /i) and s.matches?(/ of the month\s*$/i)
-  end
-
-  def parse_tokens(tokens)
-    def parse_token(token)
-      ordinals = token.scan(/#{ORDINALS.join('|')}/i)
-      ordinals.map(&:to_i)
+      mdays = tokens.map { |t| parse_token t }.flatten
+      DaysOfMonth.new(*mdays)
     end
-
-    mdays = tokens.map { |t| parse_token t }.flatten
-    DaysOfMonth.new(*mdays)
   end
-end
 
-class DateBasedCalendarParser
-  include ParsesCalendars
+  class DateBasedCalendarParser < Base
 
-  DATE_REGEX = /^\s*(\d{4})\s+(\d{1,2})\s+(\d{1,2})/
+    DATE_REGEX = /^\s*(\d{4})\s+(\d{1,2})\s+(\d{1,2})/
 
-  def self.can_parse?(s); s.matches?(DATE_REGEX) end
+    def self.can_parse?(s); s.matches?(DATE_REGEX) end
 
-  def parse_tokens(tokens)
-    def parse_token(token)
-      token =~ DATE_REGEX
-      year, month, day = [$1, $2, $3].map(&:to_i)
-      DateTime.civil(year, month, day)
+    def parse_tokens(tokens)
+      def parse_token(token)
+        token =~ DATE_REGEX
+        year, month, day = [$1, $2, $3].map(&:to_i)
+        DateTime.civil(year, month, day)
+      end
+
+      tokens.map { |t| parse_token t }
     end
-
-    tokens.map { |t| parse_token t }
   end
 end

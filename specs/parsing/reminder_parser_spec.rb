@@ -18,8 +18,6 @@ describe ReminderParser do
   end
 end
 
-class ReminderTimingInfoParserForTest
-  include ParsesCalendars
-
+class ReminderTimingInfoParserForTest < CalendarParser::Base
   def parse_tokens(tokens); DaysOfWeek.new(:sundays) end
 end

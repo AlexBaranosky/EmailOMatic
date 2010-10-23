@@ -1,11 +1,11 @@
 require 'rspec'
 require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 
-describe DateBasedCalendarParser do
-  parser = DateBasedCalendarParser.new
+describe CalendarParser::DateBasedCalendarParser do
+  parser = CalendarParser::DateBasedCalendarParser.new
 
   it 'can parse properly formatted strings' do
-    DateBasedCalendarParser.can_parse?('2010 1 25').should == true
+    CalendarParser::DateBasedCalendarParser.can_parse?('2010 1 25').should == true
   end
 
   it 'should parse calendars out of a date based string' do
