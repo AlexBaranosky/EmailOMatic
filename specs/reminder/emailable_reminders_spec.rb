@@ -2,11 +2,11 @@ require 'rspec'
 require 'rr'
 require File.dirname(__FILE__) + '/../../src/reminder/persistent_email_records'
 require File.dirname(__FILE__) + '/../../src/reminder/reminder'
-require File.dirname(__FILE__) + '/../../src/reminder/group_of_reminders'
+require File.dirname(__FILE__) + '/../../src/reminder/emailable_reminders'
 
-describe GroupOfReminders do
+describe EmailableReminders do
 
-  reminders = GroupOfReminders.new
+  reminders = EmailableReminders.new
 
   RR::new_instance_of(PersistentEmailRecords) do |records|
     RR::mock(records).record_num_of_reminders_and_todays_wday_value
@@ -25,7 +25,7 @@ describe GroupOfReminders do
   end
 
   it 'should return the reminders for the next two days when asked for the reminders which are ready to be sent' do
-    reminders = GroupOfReminders.new(stub_reminder, stub_reminder)
+    reminders = EmailableReminders.new(stub_reminder, stub_reminder)
     reminders.reminders_ready_to_be_sent.size.should == 2
   end
 end

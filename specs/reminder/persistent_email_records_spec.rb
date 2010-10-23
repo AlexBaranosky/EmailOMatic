@@ -1,6 +1,6 @@
 require 'rspec'
 require File.dirname(__FILE__) + '/../../src/reminder/persistent_email_records'
-require File.dirname(__FILE__) + '/../../src/reminder/group_of_reminders'
+require File.dirname(__FILE__) + '/../../src/reminder/emailable_reminders'
 
 NUM_REMINDERS_ALREADY_SENT_TODAY = 3
 def today; DateTime.now.wday end
