@@ -11,7 +11,7 @@ describe DayOfMonthBasedCalendarParser do
     DayOfMonthBasedCalendarParser.can_parse?('Every 21st, 22nd and 28th of the month').should == true
   end
 
-  it 'should parse timing infos from ordinal numbers' do
+  it 'should parse calendars from ordinal numbers' do
     parser.parse('Every 15th of the month').should == Calendar.new(DaysOfMonth.new(15))
     parser.parse('Every 1st of the month').should == Calendar.new(DaysOfMonth.new(1))
     parser.parse('Every 2nd of the month').should == Calendar.new(DaysOfMonth.new(2))
@@ -22,17 +22,17 @@ describe DayOfMonthBasedCalendarParser do
     parser.parse('Every 31st of the month').should == Calendar.new(DaysOfMonth.new(31))
   end
 
-  it 'should fail to parse timing infos from improper ordinal numbers' do
+  it 'should fail to parse calendars from improper ordinal numbers' do
     proc { parser.parse('Every 15st of the month') }.should raise_error
     proc { parser.parse('Every 15nd of the month') }.should raise_error
     proc { parser.parse('Every 15rd of the month') }.should raise_error
   end
 
-  it 'should parse multiple timing infos out of a day of week based string' do
+  it 'should parse multiple calendars out of a day of week based string' do
     parser.parse(' Every 15th of the month & Every 22nd of the month ').should == Calendar.new(DaysOfMonth.new(15, 22))
   end
 
-  it 'should ignore case when parsing timing infos' do
+  it 'should ignore case when parsing calendars' do
     parser.parse('EvERy 15TH of THE month').should == Calendar.new(DaysOfMonth.new(15))
   end
 

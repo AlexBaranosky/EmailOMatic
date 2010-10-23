@@ -9,7 +9,7 @@ class CalendarParser
   def self.for(s)
     parsers = [DayOfWeekBasedCalendarParser, DayOfMonthBasedCalendarParser, DateBasedCalendarParser]
     parsers.each { |p| return p.new if p.can_parse? s }
-    raise 'Cannot create timing info parser.  Invalid format.'
+    raise 'Cannot create calendar parser.  Invalid format.'
   end
 end
 

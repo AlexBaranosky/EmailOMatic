@@ -9,11 +9,11 @@ describe DayOfWeekBasedCalendarParser do
     DayOfWeekBasedCalendarParser.can_parse?('Sundays').should == true
   end
 
-  it 'should parse timing infos out of a day of week based string' do
+  it 'should parse calendars out of a day of week based string' do
     parser.parse('  Sundays  ').should == Calendar.new(DaysOfWeek.new(:sundays))
   end
 
-  it 'should parse multiple timing infos out of a day of week based string' do
+  it 'should parse multiple calendars out of a day of week based string' do
     parser.parse(' Mondays & Tuesdays ').should == Calendar.new(DaysOfWeek.new(:mondays, :tuesdays))
   end
 end
