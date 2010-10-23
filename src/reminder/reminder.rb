@@ -4,8 +4,8 @@ require File.dirname(__FILE__) + '/../../src/general/enumerable_monkey_patch'
 class Reminder
   attr_reader :message
 
-  def initialize(message, timing_info)
-    @message, @timing_info = message, timing_info
+  def initialize(message, calendar)
+    @message, @calendar = message, calendar
   end
 
   def days_from_now_due?(num_days)
@@ -13,15 +13,15 @@ class Reminder
   end
 
   def next_time_to_remind
-    @timing_info.next_time
+    @calendar.next_time
   end
 
   def ==(other)
-    @message == other.message and @timing_info == other.timing_info
+    @message == other.message and @calendar == other.calendar
   end
 
   protected
 
-  attr_reader :timing_info
+  attr_reader :calendar
 end
 

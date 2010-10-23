@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/timing_info_parser'
+require File.dirname(__FILE__) + '/calendar_parser'
 require File.dirname(__FILE__) + '/../reminder/reminder'
 require File.dirname(__FILE__) + '/../../src/general/string_extensions'
 
@@ -14,8 +14,8 @@ class ReminderParser
   end
 
   def parse_reminder(line)
-    timing_info_part, message_part = line.chomp.split("\"")
-    timing_info = CalendarParser.for(timing_info_part).parse(timing_info_part)
-    Reminder.new(message_part, timing_info)
+    calendar_part, message_part = line.chomp.split("\"")
+    calendar = CalendarParser.for(calendar_part).parse(calendar_part)
+    Reminder.new(message_part, calendar)
   end
 end

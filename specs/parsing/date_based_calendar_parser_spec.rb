@@ -1,5 +1,5 @@
 require 'rspec'
-require File.dirname(__FILE__) + '/../../src/parsing/timing_info_parser'
+require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 
 describe DateBasedCalendarParser do
   parser = DateBasedCalendarParser.new

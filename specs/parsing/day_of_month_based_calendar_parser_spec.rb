@@ -1,5 +1,5 @@
 require 'rspec'
-require File.dirname(__FILE__) + '/../../src/parsing/timing_info_parser'
+require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 
 describe DayOfMonthBasedCalendarParser do

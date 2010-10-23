@@ -1,6 +1,6 @@
 require "rspec"
 require "rr"
-require File.dirname(__FILE__) + '/../../src/parsing/timing_info_parser'
+require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 

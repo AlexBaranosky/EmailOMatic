@@ -14,8 +14,8 @@ class CalendarParser
 end
 
 module ParsesCalendars
-  def parse(timing_info_string)
-    tokens = timing_info_string.split('&')
+  def parse(calendar_string)
+    tokens = calendar_string.split('&')
     reminder_times = parse_tokens(tokens)
     Calendar.new(reminder_times)
   end

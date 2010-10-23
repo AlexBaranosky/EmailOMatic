@@ -12,13 +12,13 @@ describe Reminder do
   MESSAGE_ = 'some message'
 
   it "should give next time to remind for date-based reminders" do
-    future_timing_info = stub_timing_info(DateTime.now + DAYS_IN_THE_FUTURE)
-    reminder = Reminder.new(MESSAGE_, future_timing_info)
+    future_calendar = stub_calendar(DateTime.now + DAYS_IN_THE_FUTURE)
+    reminder = Reminder.new(MESSAGE_, future_calendar)
     reminder.next_time_to_remind.should_not be_nil
   end
 
   it "should give next time to remind for day of the week based reminders" do
-    fridays = stub_timing_info(DaysOfWeek.new(:fridays).first)
+    fridays = stub_calendar(DaysOfWeek.new(:fridays).first)
     reminder = Reminder.new(MESSAGE_, fridays)
 
     next_time = reminder.next_time_to_remind
@@ -27,12 +27,12 @@ describe Reminder do
   end
 
   it "should say if the next time to remind is within x days" do
-    future_timing_info = stub_timing_info(DateTime.now + DAYS_IN_THE_FUTURE)
-    reminder = Reminder.new(MESSAGE_, future_timing_info)
+    future_calendar = stub_calendar(DateTime.now + DAYS_IN_THE_FUTURE)
+    reminder = Reminder.new(MESSAGE_, future_calendar)
     reminder.days_from_now_due?(DAYS_IN_THE_FUTURE).should == true
   end
 end
 
-def stub_timing_info(time)
+def stub_calendar(time)
   RR::stub!.next_time { time }.subject
 end
