@@ -9,7 +9,6 @@ require File.dirname(__FILE__) + '/../../src/time/calendar'
 describe ReminderEmailCreator do
   email_maker = ReminderEmailCreator.new
 
-  #TODO: seems to be a lot of dependencies needed for this test.  Look into that.
   it "should format reminders into a email message" do
     SATURDAY_SEP_25 = Date.civil(2010, 9, 25)
     Timecop.freeze(SATURDAY_SEP_25) do

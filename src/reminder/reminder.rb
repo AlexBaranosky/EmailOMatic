@@ -12,13 +12,17 @@ class Reminder
     next_date_time and next_date_time - DateTime.now < num_days
   end
 
-  #TODO: something screwy here: should this method exist?
   def next_date_time
     @calendar.next_date_time
   end
 
   def ==(other)
     @message == other.message and @calendar == other.calendar
+  end
+
+  def to_s
+    reminder_date = next_date_time
+    "#{reminder_date.as_day} #{reminder_date.m_d_y}\n#{message}"
   end
 
   protected

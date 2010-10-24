@@ -12,5 +12,5 @@ end
 
 describe LazyEnumerable do
   #TODO: should be tests covering this infinite enumerable stuff.  Fix that.
-  # it "should be able select without infinitely recurring" 
+  it "should be able select without infinitely recurring"
 end
