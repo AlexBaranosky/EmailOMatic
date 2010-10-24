@@ -4,6 +4,10 @@ require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 
+#RSpec.configure do |config|
+#  config.mock_with :rr
+#end
+
 describe ReminderParser do
 
   parser = ReminderParser.new

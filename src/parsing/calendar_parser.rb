@@ -8,7 +8,7 @@ require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 module CalendarParser
   def self.for(string)
     [DayOfWeekBased, DayOfMonthBased, DateBased].each { |parser| return parser.new if parser.can_parse? string }
-    raise 'Cannot create timing info parser.  Invalid format.'
+    raise 'Cannot create calendar parser. String has invalid format.'
   end
 
   class Base

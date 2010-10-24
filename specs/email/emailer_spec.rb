@@ -2,10 +2,6 @@ require "rspec"
 require "rr"
 require File.dirname(__FILE__) + '/../../src/email/emailer'
 
-#RSpec.configure do |config|
-#  config.mock_with :rr
-#end
-
 describe Emailer do
 #
 #  @formatter = nil
