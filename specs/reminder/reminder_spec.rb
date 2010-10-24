@@ -21,9 +21,9 @@ describe Reminder do
     fridays = stub_calendar(DaysOfWeek.new(:fridays).first)
     reminder = Reminder.new(MESSAGE_, fridays)
 
-    next_time = reminder.next_date_time
+    next_date = reminder.next_date_time
 
-    next_time.wday.should == 5
+    next_date.wday.should == 5
   end
 
   it "should say if the next time to remind is within x days" do
@@ -33,6 +33,6 @@ describe Reminder do
   end
 end
 
-def stub_calendar(time)
-  RR::stub!.next_date_time { time }.subject
+def stub_calendar(date_time)
+  RR::stub!.next_date_time { date_time }.subject
 end

@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../../src/reminder/persistent_email_records'
 
 class EmailableReminders
-  def initialize(*reminder_list)
-    @reminders = reminder_list
+  def initialize(*reminders)
+    @reminders     = reminders
     @email_records = PersistentEmailRecords.new
   end
 
@@ -10,24 +10,22 @@ class EmailableReminders
     @reminders << reminder
   end
 
-  def send_due_reminders(recipients)
-    if ready_to_be_sent?
-      Emailer.new.send_email(self, recipients)
-      persist_due_reminder_count_and_day
+  def send_reminders(recipient)
+    if any_reminders_ready_to_send?
+      email = ReminderEmailCreator.new.create_email(recipient, due_reminders)
+      EmailSender.new.send_email(email, recipient.email_address)
+      @email_records.record_num_of_reminders_and_todays_wday_value(due_reminders)
     end
-  end
-
-  def reminders_ready_to_be_sent
-    @reminders.select { |r| r.days_from_now_due? 5 }
   end
 
   private
 
-  def ready_to_be_sent?
-    reminders_ready_to_be_sent.size > @email_records.num_reminders_already_sent_today
+  #TODO: if I add and remove a reminder in one day this will not register as there being any new due reminders, since total stays constant
+  def any_reminders_ready_to_send?
+    due_reminders.size > @email_records.num_reminders_already_sent_today
   end
 
-  def persist_due_reminder_count_and_day
-    @email_records.record_num_of_reminders_and_todays_wday_value(reminders_ready_to_be_sent)
+  def due_reminders
+    @reminders.select { |r| r.days_from_now_due? 5 }
   end
 end

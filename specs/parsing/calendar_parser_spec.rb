@@ -12,7 +12,7 @@ describe CalendarParser do
   end
 
   it 'should create a day of month based calendar parser' do
-    should_create_proper_parser(' Every 6th of the month  & Every 8th of the month', DayOfMonthBased)
+    should_create_proper_parser(' Every 6th of the month  & Every 8th of the month', CalendarParser::DayOfMonthBased)
   end
 
   it 'should raise error if bad string' do
