@@ -14,9 +14,8 @@ class EmailHistory
   end
 
   def save_num_reminders_sent_and_todays_wday(num_sent)
-    history = {'num reminders already sent today' => num_sent,
-               'weekday last saved on'            => DateTime.now.wday}
-    File.open(HISTORY_FILE, 'w') { |f| f.write history.to_yaml }
-    @history = YAML.load_file HISTORY_FILE
+    @history['num reminders already sent today'] = num_sent
+    @history['weekday last saved on']            = DateTime.now.wday
+    File.open(HISTORY_FILE, 'w') { |f| f.write @history.to_yaml }
   end
 end
