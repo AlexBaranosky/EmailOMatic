@@ -2,7 +2,7 @@ require 'rspec'
 require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/extensions/kernel_extensions'
 
-Calendar = subclass_with_equals :Calendar
+add_equals_method :Calendar
 
 describe CalendarParser::DateBased do
   parser = CalendarParser::DateBased.new

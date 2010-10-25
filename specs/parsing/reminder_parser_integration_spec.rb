@@ -3,8 +3,8 @@ require 'date'
 require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../../src/extensions/kernel_extensions'
 
-Calendar = subclass_with_equals :Calendar
-Reminder = subclass_with_equals :Reminder
+add_equals_method :Calendar
+add_equals_method :Reminder
 
 describe ReminderParser do
 
