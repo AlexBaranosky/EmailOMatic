@@ -6,7 +6,7 @@ module LazyDateTimeEnumerable
   include LazyEnumerable
 
   def ==(other)
-    other.kind_of? self.class and @dates.to_set == other.dates.to_set
+    other.instance_of? self.class and @dates.to_set == other.dates.to_set
   end
 
   def initialize(*dates)
