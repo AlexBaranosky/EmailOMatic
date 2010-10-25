@@ -7,14 +7,14 @@ class DaysOfWeek
 
   private
 
-  WDAYS = { :sundays => 0, :mondays => 1, :tuesdays => 2, :wednesdays => 3, :thursdays => 4, :fridays => 5, :saturdays => 6 }
-  WDAYS.default = nil
+  WEEKDAYS = { :sundays => 0, :mondays => 1, :tuesdays => 2, :wednesdays => 3, :thursdays => 4, :fridays => 5, :saturdays => 6 }
+  WEEKDAYS.default = nil
 
   def valid?(day_syms)
-    day_syms.none? { |d| WDAYS[d].nil? }
+    day_syms.none? { |d| WEEKDAYS[d].nil? }
   end
 
   def date_in_the_cycle?(date)
-    @dates.map { |d| WDAYS[d] }.include?(date.wday)
+    @dates.map { |d| WEEKDAYS[d] }.include?(date.wday)
   end
 end
