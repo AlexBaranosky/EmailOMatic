@@ -6,6 +6,7 @@ require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 require File.dirname(__FILE__) + '/../../src/extensions/kernel_extensions'
 
 Calendar = subclass_with_equals :Calendar
+Reminder = subclass_with_equals :Reminder
 
 #TODO: use something like the below to make RR stubbing go away after this test is over; so to not pollute the rest of the tests
 #RSpec.configure do |config|

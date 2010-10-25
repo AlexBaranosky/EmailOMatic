@@ -16,17 +16,9 @@ class Reminder
     @calendar.next_date_time
   end
 
-  def ==(other)
-    @message == other.message and @calendar == other.calendar
-  end
-
   def to_s
-    reminder_date = next_date_time
-    "#{reminder_date.as_day} #{reminder_date.m_d_y}\n#{message}"
+    date = next_date_time
+    "#{date.as_day} #{date.m_d_y}\n#{message}"
   end
-
-  protected
-
-  attr_reader :calendar
 end
 
