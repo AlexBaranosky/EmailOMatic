@@ -4,6 +4,7 @@ require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 
+#TODO: use something like the below to make RR stubbing go away after this test is over; so to not pollute the rest of the tests
 #RSpec.configure do |config|
 #  config.mock_with :rr
 #end
@@ -11,7 +12,7 @@ require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 describe ReminderParser do
 
   parser = ReminderParser.new
-  RR::stub(CalendarParser).for { ReminderTimingInfoParserForTest.new }
+  RR::stub(CalendarParser).for { CalendarParserForTest.new }
 
   it "should ignore comments" do
     parser.parse(' # a comment here').should == nil
@@ -22,6 +23,6 @@ describe ReminderParser do
   end
 end
 
-class ReminderTimingInfoParserForTest < CalendarParser::Base
+class CalendarParserForTest < CalendarParser::Base
   def parse_tokens(tokens); DaysOfWeek.new(:sundays) end
 end
