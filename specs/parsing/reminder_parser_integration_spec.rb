@@ -3,7 +3,7 @@ require 'date'
 require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../../src/extensions/kernel_extensions'
 
-add_equals_method :Calendar, :Reminder
+add_equals_method :Calendar, :Reminder, :DaysOfWeek
 
 describe ReminderParser do
 

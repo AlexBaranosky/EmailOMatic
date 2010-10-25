@@ -5,10 +5,6 @@ require File.dirname(__FILE__) + '/../../src/extensions/lazy_enumerable'
 module LazyDateTimeEnumerable
   include LazyEnumerable
 
-  def ==(other)
-    other.instance_of? self.class and @dates.to_set == other.dates.to_set
-  end
-
   def initialize(*dates)
     raise "invalid date input: '#{dates}'" unless dates.size > 0 && valid?(dates)
     @dates = dates
@@ -22,10 +18,6 @@ module LazyDateTimeEnumerable
       date = midnight_of_next_date_in_cycle_after(date)
     end
   end
-
-  protected
-
-  attr_reader :dates
 
   private
 

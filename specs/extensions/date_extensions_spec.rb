@@ -1,7 +1,6 @@
 require 'rspec'
 require File.dirname(__FILE__) + '/../../src/extensions/date_extensions'
 
-
 describe Date do
   SUNDAY = Date.civil(2010, 8, 8)
   MONDAY = Date.civil(2010, 8, 9)

@@ -5,7 +5,7 @@ require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 require File.dirname(__FILE__) + '/../../src/extensions/kernel_extensions'
 
-add_equals_method :Calendar, :Reminder
+add_equals_method :Calendar, :Reminder, :DaysOfWeek
 
 #TODO: use something like the below to make RR stubbing go away after this test is over; so to not pollute the rest of the tests
 #RSpec.configure do |config|

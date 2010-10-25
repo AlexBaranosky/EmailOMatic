@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 require File.dirname(__FILE__) + '/../../src/extensions/kernel_extensions'
 
-add_equals_method :Calendar
+add_equals_method :Calendar, :DaysOfMonth
 
 describe CalendarParser::DayOfMonthBased do
   parser = CalendarParser::DayOfMonthBased.new
