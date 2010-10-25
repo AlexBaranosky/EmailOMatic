@@ -1,6 +1,7 @@
 require 'date'
 require File.dirname(__FILE__) + '/../../src/extensions/enumerable_extensions'
 
+#TODO: use YAML stuff instead
 class PersistentEmailRecords
   def initialize
     @records_file = File.dirname(__FILE__) + '/../../resources/persistent_email_records.txt'
@@ -10,8 +11,8 @@ class PersistentEmailRecords
     its_a_new_day? ? 0 : recorded_value_of("NUM_REMINDERS_SENT_ALREADY_TODAY")
   end
 
-  def record_num_of_reminders_and_todays_wday_value(due_reminder_list)
-    record =  "NUM_REMINDERS_SENT_ALREADY_TODAY: #{due_reminder_list.size}" << "\n"
+  def save_num_reminders_sent_and_todays_wday(num_sent)
+    record =  "NUM_REMINDERS_SENT_ALREADY_TODAY: #{num_sent}" << "\n"
     record << "LAST_PERSIST_WDAY: #{DateTime.now.wday}" << "\n"
     File.open(@records_file, 'w') { |f| f.write record }
   end

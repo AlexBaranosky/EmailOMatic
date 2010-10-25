@@ -7,7 +7,7 @@ require File.dirname(__FILE__) + '/../../src/extensions/kernel_extensions'
 
 add_equals_method :Calendar, :Reminder, :DaysOfWeek
 
-#TODO: use something like the below to make RR stubbing go away after this test is over; so to not pollute the rest of the tests
+#TODO: <PRIORITY HIGH> use something like the below to make RR stubbing go away after this test is over; so to not pollute the rest of the tests
 #RSpec.configure do |config|
 #  config.mock_with :rr
 #end

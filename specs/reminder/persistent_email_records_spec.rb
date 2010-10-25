@@ -20,7 +20,7 @@ describe PersistentEmailRecords do
 
   it "should record a reminders' count and day of persisting" do
     given_records_last_updated(yesterday)
-    @records.record_num_of_reminders_and_todays_wday_value([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    @records.save_num_reminders_sent_and_todays_wday(12)
     @records.num_reminders_already_sent_today.should == 12
   end
 
