@@ -7,7 +7,7 @@ add_equals_method :Calendar, :Reminder, :DaysOfWeek
 
 describe ReminderParser do
   parser = ReminderParser.new
-  RR::stub(CalendarParser).for { CalendarParserForTest.new }
+  before(:each) { stub(CalendarParser).for { CalendarParserForTest.new } }
 
   it "should ignore comments" do
     parser.parse(' # a comment here').should == nil

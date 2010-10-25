@@ -33,5 +33,5 @@ describe Reminder do
 end
 
 def stub_calendar(date_time)
-  RR::stub!.next_date_time { date_time }.subject
+  stub!.next_date_time { date_time }.subject
 end
