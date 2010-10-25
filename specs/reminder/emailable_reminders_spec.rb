@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + '/../../src/reminder/email_history'
 require File.dirname(__FILE__) + '/../../src/reminder/reminder'
 require File.dirname(__FILE__) + '/../../src/reminder/emailable_reminders'
 
-#TODO: <PRIORITY HIGH> update this test to test expected API of new code
+#TODO: <PRIORITY HIGH 2> update this test to test expected API of new code
 describe EmailableReminders do
 
   RR::new_instance_of(EmailHistory) do |history|
