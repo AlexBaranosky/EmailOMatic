@@ -3,6 +3,9 @@ require "rr"
 require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
+require File.dirname(__FILE__) + '/../../src/extensions/kernel_extensions'
+
+Calendar = subclass_with_equals :Calendar
 
 #TODO: use something like the below to make RR stubbing go away after this test is over; so to not pollute the rest of the tests
 #RSpec.configure do |config|
@@ -24,5 +27,7 @@ describe ReminderParser do
 end
 
 class CalendarParserForTest < CalendarParser::Base
-  def parse_tokens(tokens); DaysOfWeek.new(:sundays) end
+  def parse_tokens(tokens)
+    ; DaysOfWeek.new(:sundays)
+  end
 end

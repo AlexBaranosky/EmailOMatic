@@ -12,6 +12,7 @@ describe EmailableReminders do
     RR::mock(records).num_reminders_already_sent_today { 0 }
   end
 
+  #FAILING
   it 'should send any reminders that are due to the recipient' do
     reminders = EmailableReminders.new(stub_reminder(true), stub_reminder(false) )
     reminders.due_reminders.size.should == 1
