@@ -22,6 +22,7 @@ class EmailableReminders
   private
 
   #TODO: if I add and remove a reminder in one day this will not register as there being any new due reminders, since total stays constant
+  # consider storing a true history of all messages on all reminders sent today, and comparing vs that to evaluate the below method
   def any_reminders_ready_to_send?
     due_reminders.size > @history.num_reminders_already_sent_today
   end

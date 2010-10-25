@@ -1,5 +1,4 @@
-require "rspec"
-require 'timecop'
+require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/email/reminder_email_creator'
 require File.dirname(__FILE__) + '/../../src/email/email_recipient'
 require File.dirname(__FILE__) + '/../../src/reminder/reminder'

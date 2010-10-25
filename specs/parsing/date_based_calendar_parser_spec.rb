@@ -1,6 +1,5 @@
-require 'rspec'
+require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
-require File.dirname(__FILE__) + '/../../src/extensions/kernel_extensions'
 
 add_equals_method :Calendar
 

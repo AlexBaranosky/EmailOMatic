@@ -1,7 +1,6 @@
-require 'rspec'
+require File.dirname(__FILE__) + '/../test_helpers'
 require 'date'
 require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
-require File.dirname(__FILE__) + '/../../src/extensions/kernel_extensions'
 
 add_equals_method :Calendar, :Reminder, :DaysOfWeek
 

@@ -1,5 +1,4 @@
-require 'rspec'
-require 'rr'
+require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/reminder/reminder'
 require File.dirname(__FILE__) + '/../../src/time/calendar'
 require File.dirname(__FILE__) + '/../../src/extensions/enumerable_extensions'

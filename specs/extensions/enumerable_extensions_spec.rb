@@ -1,4 +1,4 @@
-require 'rspec'
+require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/extensions/enumerable_extensions'
 
 class InfiniteEnumerableForTest

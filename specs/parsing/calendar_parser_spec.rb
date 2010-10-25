@@ -1,4 +1,4 @@
-require 'rspec'
+require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 
 describe CalendarParser do

@@ -1,4 +1,4 @@
-require 'rspec'
+require File.dirname(__FILE__) + '/../test_helpers'
 require 'date'
 require File.dirname(__FILE__) + '/../../src/time/calendar'
 

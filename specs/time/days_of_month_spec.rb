@@ -1,6 +1,7 @@
-require "rspec"
-require "timecop"
+require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
+
+add_equals_method :DaysOfMonth
 
 describe DaysOfMonth do
   it "should be an infinite enumeration of DateTimes for the specified day of the month" do

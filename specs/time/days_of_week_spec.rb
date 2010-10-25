@@ -1,6 +1,7 @@
-require 'rspec'
-require 'timecop'
+require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
+
+add_equals_method :DaysOfWeek
 
 describe DaysOfWeek do
   WEDNESDAY_ = 3
@@ -28,24 +29,6 @@ describe DaysOfWeek do
     end
   end
 
-  it 'should consider equal any two DayOfWeeks created with same day specified' do
-    day1 = DaysOfWeek.new(:wednesdays)
-    day2 = DaysOfWeek.new(:wednesdays)
-    day1.should == day2
-  end
-
-  it 'should consider not equal any two DayOfWeeks created with different days specified' do
-    day1 = DaysOfWeek.new(:wednesdays)
-    day2 = DaysOfWeek.new(:fridays)
-    day1.should_not == day2
-  end
-
-  it 'should consider equal any two DayOfWeeks created with same daysss specified' do
-    day1 = DaysOfWeek.new(:wednesdays, :fridays)
-    day2 = DaysOfWeek.new(:fridays, :wednesdays)
-    day1.should == day2
-  end
-
   it "should not accept invalid days" do
     DaysOfWeek.new(:sundays)
     DaysOfWeek.new(:mondays)
@@ -57,7 +40,7 @@ describe DaysOfWeek do
     proc { DaysOfWeek.new(:gizundays) }.should raise_error
   end
 
-  it 'should define each() and include InfiniteEnumerable' do
+  it 'should define each() and include LazyEnumerable' do
     day = DaysOfWeek.new(:wednesdays)
     day.kind_of?(LazyEnumerable).should == true
 
