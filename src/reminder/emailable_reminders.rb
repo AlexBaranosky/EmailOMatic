@@ -29,6 +29,6 @@ class EmailableReminders
 
   #TODO: consider making each reminder have its own number of days it wants you to remind it ahead
   def due_reminders
-    @reminders.select { |r| r.days_from_now_due? 5 }
+    @reminders.select { |r| r.due? }
   end
 end

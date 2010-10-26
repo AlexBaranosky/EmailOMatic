@@ -25,10 +25,14 @@ describe Reminder do
     next_date.wday.should == 5
   end
 
-  it "should say if the next time to remind is within x days" do
-    future_calendar = stub_calendar(DateTime.now + DAYS_IN_THE_FUTURE)
-    reminder = Reminder.new(MESSAGE_, future_calendar)
-    reminder.days_from_now_due?(DAYS_IN_THE_FUTURE).should == true
+  it 'is due when we are within X days of the next date to remind' do
+    Timecop.freeze(Date.civil(2000, 1, 1)) do
+      calendar  = stub_calendar(Date.civil(2000, 1, 3))
+      reminder1 = Reminder.new(MESSAGE_, calendar, 1)
+      reminder1.due?.should == false
+      reminder2 = Reminder.new(MESSAGE_, calendar, 2)
+      reminder2.due?.should == true
+    end
   end
 end
 

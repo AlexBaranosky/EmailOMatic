@@ -4,12 +4,13 @@ require File.dirname(__FILE__) + '/../../src/extensions/enumerable_extensions'
 class Reminder
   attr_reader :message
 
-  def initialize(message, calendar)
-    @message, @calendar = message, calendar
+  def initialize(message, calendar, days_in_advance_to_notify = 5)
+    @message, @calendar, @days_in_advance_to_notify = message, calendar, days_in_advance_to_notify
   end
 
-  def days_from_now_due?(num_days)
-    next_date_time and next_date_time - DateTime.now < num_days
+  def due?
+    return false unless next_date_time
+    DateTime.now >= next_date_time - @days_in_advance_to_notify
   end
 
   def next_date_time

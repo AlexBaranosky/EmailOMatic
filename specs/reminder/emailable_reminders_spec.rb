@@ -24,5 +24,5 @@ describe EmailableReminders do
 end
 
 def stub_reminder(due)
-  stub!.days_from_now_due? { due }.subject
+  stub!.due? { due }.subject
 end
