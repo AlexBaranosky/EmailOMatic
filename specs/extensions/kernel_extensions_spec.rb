@@ -20,6 +20,14 @@ describe Kernel do
 
   it "doesn't put the equals back to not existing if the class had no equals to begin with"
 
+  it "removes equals method left from last test" do
+    SubObject1.new.should_not == SubObject1.new
+    add_equals_method :SubObject1
+    SubObject1.new.should == SubObject1.new
+    remove_equals_method :SubObject1
+    SubObject1.new.should_not == SubObject1.new
+  end
+
   it "add a default equals method to any class to compare each field for equality" do
     # same fields, same classes, different reference
     SubObject1.new.should_not == SubObject1.new
@@ -27,13 +35,12 @@ describe Kernel do
     add_equals_method :SubObject1
 
     # same class, same field, so equal
-    obj1 = SubObject1.new
-    obj2 = SubObject1.new
-    obj1.should == obj2
+    SubObject1.new.should == SubObject1.new
 
-    # field value changes, so not equal, even though clases are same
-    obj1.field = "new stuff"
-    obj1.should_not == obj2
+    # field value changes, so not equal, even though classes are same
+    obj       = SubObject1.new
+    obj.field = "new stuff"
+    SubObject1.new.should_not == obj
 
     # same fields different classes
     SubObject1.new.should_not == SubObject2.new

@@ -2,9 +2,9 @@ require File.dirname(__FILE__) + '/../test_helpers'
 require 'date'
 require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
 
-add_equals_method :Calendar, :Reminder, :DaysOfWeek
-
 describe ReminderParser do
+  before(:all) { add_equals_method :Calendar, :Reminder, :DaysOfWeek }
+  after(:all) { remove_equals_method :Calendar, :Reminder, :DaysOfWeek }
 
   MESSAGE     = "watch out for the new street cleaning towing!"
   TIME_A      = DateTime.parse("2010/4/1")

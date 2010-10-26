@@ -8,6 +8,11 @@ module Kernel
     end
   end
 
+  def remove_equals_method(*class_symbols)
+    clazzes = class_symbols.map { |symbol| Kernel.const_get(symbol.to_s) }
+    clazzes.each { |clazz| remove_equals clazz }
+  end
+
   private
 
   def add_equals(clazz)

@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 
-add_equals_method :DaysOfWeek
-
 describe DaysOfWeek do
   WEDNESDAY_ = 3
   FRIDAY_ = 5
@@ -46,4 +44,7 @@ describe DaysOfWeek do
 
     defined? day.each.should == true
   end
+
+  before(:all) { add_equals_method :DaysOfWeek }
+  after(:all) { remove_equals_method :DaysOfWeek }
 end

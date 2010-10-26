@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 
-add_equals_method :Calendar
-
 describe CalendarParser::DateBased do
   parser = CalendarParser::DateBased.new
 
@@ -17,4 +15,8 @@ describe CalendarParser::DateBased do
   it 'should parse multiple calendars out of a date based string' do
     parser.parse(' 2010 1 25 & 2000 5 29 ').should == Calendar.new([DateTime.civil(2010, 1, 25), DateTime.civil(2000, 5, 29)])
   end
+
+  before(:all) { add_equals_method :Calendar }
+  after(:all) { remove_equals_method :Calendar }
 end
+

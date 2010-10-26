@@ -3,8 +3,6 @@ require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/parsing/reminder_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 
-add_equals_method :Calendar, :Reminder, :DaysOfWeek
-
 describe ReminderParser do
   parser = ReminderParser.new
   before(:each) { stub(CalendarParser).for { CalendarParserForTest.new } }
@@ -16,6 +14,9 @@ describe ReminderParser do
   it "should parse line into a Reminder" do
     parser.parse("irrelevant-part-of-string\"message\"").should == Reminder.new('message', Calendar.new(DaysOfWeek.new(:sundays)))
   end
+
+  before(:all) { add_equals_method :Calendar, :Reminder, :DaysOfWeek }
+  after(:all) { remove_equals_method :Calendar, :Reminder, :DaysOfWeek }
 end
 
 class CalendarParserForTest < CalendarParser::Base

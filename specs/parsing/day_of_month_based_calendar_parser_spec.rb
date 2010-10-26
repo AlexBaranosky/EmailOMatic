@@ -2,9 +2,8 @@ require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 
-add_equals_method :Calendar, :DaysOfMonth
-
 describe CalendarParser::DayOfMonthBased do
+
   parser = CalendarParser::DayOfMonthBased.new
 
   it 'can parse properly formatted strings' do
@@ -45,4 +44,7 @@ describe CalendarParser::DayOfMonthBased do
   it 'should parse multiple days of the month at once' do
     parser.parse('Every 21st, 22nd and 28th of the month').should == Calendar.new(DaysOfMonth.new(21, 22, 28))
   end
+
+  before(:all) { add_equals_method :Calendar, :DaysOfMonth }
+  after(:all) { remove_equals_method :Calendar, :DaysOfMonth }
 end

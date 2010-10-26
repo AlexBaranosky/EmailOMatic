@@ -2,8 +2,6 @@ require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/parsing/calendar_parser'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 
-add_equals_method :Calendar, :DaysOfWeek
-
 describe CalendarParser::DayOfWeekBased do
   parser = CalendarParser::DayOfWeekBased.new
 
@@ -18,4 +16,7 @@ describe CalendarParser::DayOfWeekBased do
   it 'should parse multiple calendars out of a day of week based string' do
     parser.parse(' Mondays & Tuesdays ').should == Calendar.new(DaysOfWeek.new(:mondays, :tuesdays))
   end
+
+  before(:all) { add_equals_method :Calendar, :DaysOfWeek }
+  after(:all) { remove_equals_method :Calendar, :DaysOfWeek }
 end
