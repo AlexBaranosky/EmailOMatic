@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/extensions/enumerable_extensions'
 
-class InfiniteEnumerableForTest
+class LazyEnumerableForTest
   include Enumerable
 
   def each
@@ -36,7 +36,7 @@ describe Enumerable do
   end
 
   it "should be able to lazily enumerate" do
-    lazy_result = InfiniteEnumerableForTest.new.send(:lazily_enumerate, :each).first
+    lazy_result = LazyEnumerableForTest.new.send(:lazily_enumerate, :each).first
     lazy_result.should == 0
   end
 end

@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helpers'
 require File.dirname(__FILE__) + '/../../src/extensions/lazy_enumerable'
 
-class InfiniteEnumerableForTest
+class LazyEnumerableForTest
   include LazyEnumerable
 
   def each
@@ -11,6 +11,9 @@ class InfiniteEnumerableForTest
 end
 
 describe LazyEnumerable do
-  #TODO: should be tests covering this infinite enumerable stuff.  Fix that.
-  it "should be able select without infinitely recurring"
+  it "should be able select without infinitely recurring" do
+    LazyEnumerableForTest.new.select {|x| x < 5}.first.should == 0
+    LazyEnumerableForTest.new.select {|x| x < 5}.first.next.should == 1
+    LazyEnumerableForTest.new.select {|x| x < 5}.first.next.next.should == 2
+  end
 end
