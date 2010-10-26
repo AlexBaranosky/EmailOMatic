@@ -27,8 +27,7 @@ class EmailableReminders
     due_reminders.size > @history.num_reminders_already_sent_today
   end
 
-  #TODO: consider making each reminder have its own number of days it wants you to remind it ahead
   def due_reminders
-    @reminders.select { |r| r.due? }
+    @reminders.select(:due?)
   end
 end

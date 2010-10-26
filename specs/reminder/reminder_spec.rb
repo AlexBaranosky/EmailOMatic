@@ -10,19 +10,17 @@ DAYS_IN_THE_FUTURE = 1000
 describe Reminder do
   MESSAGE_ = 'some message'
 
-  it "should give next time to remind for date-based reminders" do
-    future_calendar = stub_calendar(DateTime.now + DAYS_IN_THE_FUTURE)
-    reminder = Reminder.new(MESSAGE_, future_calendar)
-    reminder.next_date_time.should_not be_nil
+  it "should give read-only access to its message" do
+    reminder = Reminder.new(MESSAGE_, nil)
+    reminder.message.should == MESSAGE_
+    proc { reminder.message = "this fails"}.should raise_error
   end
 
   it "should give next time to remind for day of the week based reminders" do
     fridays = stub_calendar(DaysOfWeek.new(:fridays).first)
     reminder = Reminder.new(MESSAGE_, fridays)
 
-    next_date = reminder.next_date_time
-
-    next_date.wday.should == 5
+    reminder.to_s.should == "Friday 10/29/2010\nsome message"
   end
 
   it 'is due when we are within X days of the next date to remind' do
