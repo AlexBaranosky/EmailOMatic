@@ -1,4 +1,6 @@
 require File.dirname(__FILE__) + '/../../src/reminder/email_history'
+require File.dirname(__FILE__) + '/../../src/email/reminder_email_creator'
+require File.dirname(__FILE__) + '/../../src/email/email_sender'
 
 class EmailableReminders
   def initialize(*reminders)
@@ -28,6 +30,6 @@ class EmailableReminders
   end
 
   def due_reminders
-    @reminders.select(:due?)
+    @reminders.select { |r| r.due? }
   end
 end
