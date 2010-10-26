@@ -12,13 +12,22 @@ describe Kernel do
 
   it "aliases == method to __old_equals, when applying new default ==" do
     add_equals_method(:SubObject1) do
-      SubObject1.new.__old_equals2917(SubObject1.new).should == false  #using == by reference from Object
+      SubObject1.new.__old_equals2917(SubObject1.new).should == false #using == by reference from Object
     end
     SubObject1.new.respond_to?(:__old_equals2917).should == false
     SubObject1.new.should_not == SubObject1.new
   end
 
-  it "doesn't put the equals back to not existing if the class had no equals to begin with"
+  it "doesn't put the equals back to not existing if the class had no equals to begin with" do
+    ClassWithNoEquals.new.respond_to?(:==).should == false
+
+    add_equals_method(:ClassWithNoEquals) do
+      ClassWithNoEquals.new.respond_to?(:__old_equals2917).should == false
+      ClassWithNoEquals.new.should == ClassWithNoEquals.new
+    end
+    object = ClassWithNoEquals.new
+    object.should == object
+  end
 
   it "removes equals method left from last test" do
     SubObject1.new.should_not == SubObject1.new
@@ -61,4 +70,8 @@ end
 
 class SubObject2 < MyObject
   #different classes
+end
+
+class ClassWithNoEquals < MyObject
+  undef_method :==
 end

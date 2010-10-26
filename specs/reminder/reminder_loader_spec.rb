@@ -6,5 +6,7 @@ describe ReminderLoader do
     proc { ReminderLoader.load("file_name_thatdoes_not_exist.xyz") }.should raise_error
   end
 
-  it 'reminder file exists'
+  it 'reminder file exists'  do
+    File.exists?(ReminderLoader.const_get :DEFAULT_REMINDER_FILE).should == true
+  end
 end

@@ -17,18 +17,31 @@ module Kernel
 
   def add_equals(clazz)
     clazz.class_eval do
-      alias :__old_equals2917 :==
-      def ==(other)
-        instance_variables.all? { |v| self.instance_variable_get(v) == other.instance_variable_get(v) } and other.instance_of? self.class
+      if (method_defined? :==)
+        alias :__old_equals2917 :==
+
+        def ==(other)
+          instance_variables.all? { |v| self.instance_variable_get(v) == other.instance_variable_get(v) } and other.instance_of? self.class
+        end
+      else
+        def __equals_formerly_didnt_exist; end
+        def ==(other)
+          instance_variables.all? { |v| self.instance_variable_get(v) == other.instance_variable_get(v) } and other.instance_of? self.class
+        end
       end
     end
   end
 
   def remove_equals(clazz)
     clazz.class_eval do
-      remove_method :==
-      alias :== :__old_equals2917
-      remove_method :__old_equals2917
+      if (method_defined? :__equals_formerly_didnt_exist)
+        remove_method :__equals_formerly_didnt_exist
+        remove_method :==
+      else
+        remove_method :==
+        alias :== :__old_equals2917
+        remove_method :__old_equals2917
+      end
     end
   end
 end
