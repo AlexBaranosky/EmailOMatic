@@ -12,6 +12,10 @@ describe ReminderParser do
   end
 
   it "should parse line into a Reminder" do
+    parser.parse("irrelevant-part-of-string\"message\" notify 33 days in advance").should == Reminder.new('message', Calendar.new(DaysOfWeek.new(:sundays)), 33)
+  end
+
+  it 'parses lines with no notify X days in advance to the default notification range' do
     parser.parse("irrelevant-part-of-string\"message\"").should == Reminder.new('message', Calendar.new(DaysOfWeek.new(:sundays)))
   end
 
