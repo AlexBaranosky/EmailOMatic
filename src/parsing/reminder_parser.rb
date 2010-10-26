@@ -17,7 +17,7 @@ class ReminderParser
     calendar_part, message_part, days_in_advance_to_notify = line.chomp.split("\"")
     calendar = CalendarParser.for(calendar_part).parse(calendar_part)
     if days_in_advance_to_notify
-      days_in_advance_to_notify =~ /^\s*notify (\d+) days in advance\s*$/
+      days_in_advance_to_notify =~ /^\s*notify (\d+) days? in advance\s*$/
       Reminder.new(message_part, calendar, $1.to_i)
     else
       Reminder.new(message_part, calendar)
