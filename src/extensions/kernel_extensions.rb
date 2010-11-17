@@ -24,7 +24,9 @@ module Kernel
           instance_variables.all? { |v| self.instance_variable_get(v) == other.instance_variable_get(v) } and other.instance_of? self.class
         end
       else
-        def __equals_formerly_didnt_exist; end
+        def __equals_formerly_didnt_exist;
+        end
+
         def ==(other)
           instance_variables.all? { |v| self.instance_variable_get(v) == other.instance_variable_get(v) } and other.instance_of? self.class
         end
@@ -45,3 +47,10 @@ module Kernel
     end
   end
 end
+
+module WithDefaultEquals
+  def self.included(clazz)
+    Kernel.add_equals_method(clazz.to_s.to_sym)
+  end
+end
+

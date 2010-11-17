@@ -75,3 +75,11 @@ end
 class ClassWithNoEquals < MyObject
   undef_method :==
 end
+
+describe WithDefaultEquals do
+  it 'adds an equals method to the object it mixes into' do
+    SubObject1.new.should_not == SubObject1.new
+    class SubObject1; include WithDefaultEquals end
+    SubObject1.new.should == SubObject1.new
+  end
+end

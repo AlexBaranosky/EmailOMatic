@@ -1,6 +1,7 @@
 require 'net/smtp'
 require File.dirname(__FILE__) + '/reminder_email_creator'
 
+#TODO: Mail gem?
 class EmailSender
   USERNAME = 'user.name'
   SENDER_EMAIL = "#{USERNAME}@gmail.com"

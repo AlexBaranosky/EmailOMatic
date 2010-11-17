@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + '/../../src/reminder/reminder'
 require File.dirname(__FILE__) + '/../../src/time/calendar'
 require File.dirname(__FILE__) + '/../../src/extensions/enumerable_extensions'
 
-FRIDAY_APRIL_2 = DateTime.parse("2010/4/2")
-SATURDAY_APRIL_3 = DateTime.parse("2010/4/3")
+FRIDAY_APRIL_2     = DateTime.parse("2010/4/2")
+SATURDAY_APRIL_3   = DateTime.parse("2010/4/3")
 DAYS_IN_THE_FUTURE = 1000
 
 describe Reminder do
@@ -13,14 +13,18 @@ describe Reminder do
   it "should give read-only access to its message" do
     reminder = Reminder.new(MESSAGE_, nil)
     reminder.message.should == MESSAGE_
-    proc { reminder.message = "this fails"}.should raise_error
+    proc { reminder.message = "this fails" }.should raise_error
   end
 
   it "should give next time to remind for day of the week based reminders" do
-    fridays = stub_calendar(DaysOfWeek.new(:fridays).first)
-    reminder = Reminder.new(MESSAGE_, fridays)
+    Timecop.freeze(Date.civil(2000, 1, 1)) do
+      fridays  = stub_calendar(DaysOfWeek.new(:fridays).first)
+      reminder = Reminder.new(MESSAGE_, fridays)
 
-    reminder.to_s.should == "Friday 10/29/2010\nsome message"
+      reminder.should == Reminder.new(MESSAGE_, Calendar.new([Date.civil( 2000, 1, 7)]))
+
+#      reminder.to_s.should == "Friday 1/7/2000\nsome message"
+    end
   end
 
   it 'is due when we are within X days of the next date to remind' do
@@ -32,6 +36,9 @@ describe Reminder do
       reminder2.due?.should == true
     end
   end
+
+  before(:all) { add_equals_method :Reminder, :Calendar }
+  after(:all) { remove_equals_method :Reminder, :Calendar }
 end
 
 def stub_calendar(date_time)

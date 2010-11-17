@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + '/../src/reminder/reminder_loader'
 require 'date'
 
+#TODO: unit test this
+#TODO: integration test this
 class EmailOMatic
-  def email_reminders_to(recipients)
+  def email_reminders_to(*recipients)
     reminders = ReminderLoader.load
-    recipients.each do |recipient|
-      reminders.send_reminders(recipient)
-    end
+    reminders.send_reminders(recipients)
   end
 end
 
