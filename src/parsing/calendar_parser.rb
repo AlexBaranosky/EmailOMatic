@@ -71,4 +71,15 @@ module CalendarParser
       tokens.map { |t| parse_token t }
     end
   end
+
+  class EveryDayBased < Base
+
+    REGEX = /^\s*Every ?day/i
+
+    def self.can_parse?(s); s.matches?(REGEX) end
+
+    def parse_tokens(tokens)
+      DaysOfWeek.new(:sundays, :mondays, :tuesdays, :wednesdays, :thursdays, :fridays, :saturdays)
+    end
+  end
 end
