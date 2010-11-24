@@ -20,10 +20,7 @@ describe Reminder do
     Timecop.freeze(Date.civil(2000, 1, 1)) do
       fridays  = stub_calendar(DaysOfWeek.new(:fridays).first)
       reminder = Reminder.new(MESSAGE_, fridays)
-
-      reminder.should == Reminder.new(MESSAGE_, Calendar.new([Date.civil( 2000, 1, 7)]))
-
-#      reminder.to_s.should == "Friday 1/7/2000\nsome message"
+      reminder.to_s.should == "Friday 1/7/2000\nsome message"
     end
   end
 
@@ -36,9 +33,6 @@ describe Reminder do
       reminder2.due?.should == true
     end
   end
-
-  before(:all) { add_equals_method :Reminder, :Calendar }
-  after(:all) { remove_equals_method :Reminder, :Calendar }
 end
 
 def stub_calendar(date_time)

@@ -5,10 +5,9 @@ require File.dirname(__FILE__) + '/../../src/extensions/date_extensions'
 require File.dirname(__FILE__) + '/../../src/extensions/kernel_extensions'
 
 class Reminder
-#  include WithDefaultEquals
   attr_reader :message
 
-  def initialize(message, calendar, days_in_advance_to_notify = 5)
+  def initialize(message, calendar, days_in_advance_to_notify = 3)
     @message, @calendar, @days_in_advance_to_notify = message, calendar, days_in_advance_to_notify
   end
 
