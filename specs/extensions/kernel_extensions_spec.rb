@@ -25,11 +25,10 @@ describe Kernel do
       ClassWithNoEquals.new.respond_to?(:__old_equals2917).should == false
       ClassWithNoEquals.new.should == ClassWithNoEquals.new
     end
-    object = ClassWithNoEquals.new
-    object.should == object
+    ClassWithNoEquals.new.should_not == ClassWithNoEquals.new
   end
 
-  it "removes equals method left from last test" do
+  it "removes equals method" do
     SubObject1.new.should_not == SubObject1.new
     add_equals_method :SubObject1
     SubObject1.new.should == SubObject1.new
@@ -53,6 +52,8 @@ describe Kernel do
 
     # same fields different classes
     SubObject1.new.should_not == SubObject2.new
+
+    remove_equals_method :SubObject1
   end
 end
 
@@ -78,6 +79,8 @@ end
 
 describe WithDefaultEquals do
   it 'adds an equals method to the object it mixes into' do
+    SubObject1.new.respond_to?(:__old_equals2917).should == false
+
     SubObject1.new.should_not == SubObject1.new
     class SubObject1; include WithDefaultEquals end
     SubObject1.new.should == SubObject1.new
