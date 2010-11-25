@@ -27,6 +27,6 @@ describe ReminderParser do
   after(:all) { remove_equals_method :Calendar, :Reminder, :DaysOfWeek }
 end
 
-class CalendarParserForTest < CalendarParser::Base
+class CalendarParserForTest < CalendarParser::MultiTokenedCalendarParser
   def parse_tokens(tokens); DaysOfWeek.new(:sundays) end
 end
