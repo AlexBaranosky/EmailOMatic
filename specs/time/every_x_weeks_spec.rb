@@ -12,6 +12,11 @@ describe EveryXWeeks do
     end
   end
 
+  it 'should only be creatable with start date that is the same as the given day symbol' do
+    EveryXWeeks.new(:wednesdays, Date.civil(2010, 9, 8), 1) # this is fine
+    proc { EveryXWeeks.new(:wednesdays, Date.civil(2010, 9, 9), 1) }.should raise_error #thursday start date is no good!
+  end
+
   it 'should be able to cycle every 3rd (or 4th .... infinite)' do
     A_TUESDAY = Date.civil(2010, 9, 7)
     Timecop.freeze(A_TUESDAY) do

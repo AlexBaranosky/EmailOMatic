@@ -11,7 +11,7 @@ describe CalendarParser::EveryXWeeksBased do
   end
 
   it 'should parse calendars out of a day of week based string' do
-    parser.parse('Every 2nd Sunday, starting 12/6/2010').should == Calendar.new(EveryXWeeks.new(:sundays, DateTime.civil(2010, 12, 6), 2))
+    parser.parse('Every 2nd Sunday, starting 12/5/2010').should == Calendar.new(EveryXWeeks.new(:sundays, DateTime.civil(2010, 12, 5), 2))
   end
 
   before(:all) { add_equals_method :Calendar, :EveryXWeeks }

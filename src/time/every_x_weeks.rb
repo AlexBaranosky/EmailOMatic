@@ -7,6 +7,7 @@ class EveryXWeeks
   def initialize(day_sym, start_date, every_nth_week)
     raise "invalid date input: '#{day_sym}'" unless DaysOfWeek.weekdays.keys.include?(day_sym)
     @date           = DaysOfWeek.weekdays[day_sym]
+    raise "start date must match the given day symbol" unless @date == start_date.wday
     @every_nth_week = every_nth_week
     @start_date     = start_date
   end
