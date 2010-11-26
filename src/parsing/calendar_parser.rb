@@ -4,6 +4,7 @@ require File.dirname(__FILE__) + '/../../src/extensions/string_extensions'
 require File.dirname(__FILE__) + '/../../src/time/calendar'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
+require File.dirname(__FILE__) + '/../../src/time/every_x_weeks'
 
 module CalendarParser
   ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }

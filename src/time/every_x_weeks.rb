@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 require File.dirname(__FILE__) + '/../../src/extensions/enumerable_extensions'
 
-class EveryXWeeks
+class  EveryXWeeks
   include Enumerable
 
   def initialize(day_sym, start_date, every_nth_week)

@@ -17,19 +17,35 @@ describe Reminder do
   end
 
   it "should give next time to remind for day of the week based reminders" do
-    Timecop.freeze(Date.civil(2000, 1, 1)) do
-      fridays  = stub_calendar(DaysOfWeek.new(:fridays).first)
+    Timecop.freeze(DateTime.civil(2000, 1, 1)) do
+      fridays  = Calendar.new(DaysOfWeek.new(:fridays))
       reminder = Reminder.new(MESSAGE_, fridays)
       reminder.to_s.should == "Friday 1/7/2000\nsome message"
     end
   end
 
   it 'is due when we are within X days of the next date to remind' do
-    Timecop.freeze(Date.civil(2000, 1, 1)) do
-      calendar  = stub_calendar(Date.civil(2000, 1, 3))
+    Timecop.freeze(DateTime.civil(2000, 1, 1)) do
+      calendar  = stub_calendar(DateTime.civil(2000, 1, 3))
       reminder1 = Reminder.new(MESSAGE_, calendar, 1)
       reminder1.due?.should == false
       reminder2 = Reminder.new(MESSAGE_, calendar, 2)
+      reminder2.due?.should == true
+      reminder2 = Reminder.new(MESSAGE_, calendar, 3)
+      reminder2.due?.should == true
+      reminder2 = Reminder.new(MESSAGE_, calendar, 4)
+      reminder2.due?.should == true
+      reminder2 = Reminder.new(MESSAGE_, calendar, 5)
+      reminder2.due?.should == true
+      reminder2 = Reminder.new(MESSAGE_, calendar, 6)
+      reminder2.due?.should == true
+      reminder2 = Reminder.new(MESSAGE_, calendar, 7)
+      reminder2.due?.should == true
+      reminder2 = Reminder.new(MESSAGE_, calendar, 8)
+      reminder2.due?.should == true
+      reminder2 = Reminder.new(MESSAGE_, calendar, 9)
+      reminder2.due?.should == true
+      reminder2 = Reminder.new(MESSAGE_, calendar, 10)
       reminder2.due?.should == true
     end
   end

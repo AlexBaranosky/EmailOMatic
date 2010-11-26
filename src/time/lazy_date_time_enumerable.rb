@@ -33,6 +33,6 @@ module LazyDateTimeEnumerable
 
   def next_date_in_cycle_after(date)
     date += 1 until date_in_the_cycle?(date)
-    DateTime.civil(date.year, date.month, date.day, 0, 0, 0)
+    DateTime.civil(date.year, date.month, date.day, 23, 59, 59)
   end
 end

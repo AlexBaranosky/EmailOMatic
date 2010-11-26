@@ -24,7 +24,7 @@ class EmailableReminders
   def send_reminder(recipient)
     email = ReminderEmailCreator.new.create_email(recipient, due_reminders)
     EmailSender.new.send_email(email, recipient.email_address)
-    @history.save_reminders_sent_and_todays_wday(due_reminders.size)
+    @history.save_num_reminders_sent_and_todays_wday(due_reminders.size)
   end
 
   #TODO put tests around this, especially cus I am unsure if it will work this way!
