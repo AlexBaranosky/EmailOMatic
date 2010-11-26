@@ -9,7 +9,7 @@ module CalendarParser
   ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }
 
   def self.for(string)
-    [DayOfWeekBased, DayOfMonthBased, DateBased, MultiWeeklyBased, EveryDayBased].each do |parser|
+    [DayOfWeekBased, DayOfMonthBased, DateBased, EveryXWeeksBased, EveryDayBased].each do |parser|
       return parser.new if parser.can_parse? string
     end
     raise 'Cannot create calendar parser. String has invalid format.'
@@ -86,7 +86,7 @@ module CalendarParser
     end
   end
 
-  class MultiWeeklyBased
+  class EveryXWeeksBased
 
     REGEX = /^\s*Every\s+(#{ORDINALS.join('|')})\s+(#{Date::DAYNAMES.join('|')}),?\s+starting\s+(\d{1,2})\/(\d{1,2})\/(\d{4}).*/i
 
@@ -96,7 +96,7 @@ module CalendarParser
       s =~ REGEX
       day_sym = $2.downcase.to_sym
       frequency, month, day, year = [$1, $3, $4, $5].map(&:to_i)
-      nwd = NWeeklyDays.new(day_sym, DateTime.civil(year, month, day), frequency)
+      nwd = EveryXWeeks.new(day_sym, DateTime.civil(year, month, day), frequency)
       Calendar.new(nwd)
     end
   end

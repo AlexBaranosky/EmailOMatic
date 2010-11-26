@@ -20,7 +20,7 @@ describe CalendarParser do
   end
 
   it 'should create an n weekly days based calendar parser' do
-    should_create_proper_parser(' Every 2nd Thursday starting 12/6/2010  ', CalendarParser::MultiWeeklyBased)
+    should_create_proper_parser(' Every 2nd Thursday starting 12/6/2010  ', CalendarParser::EveryXWeeksBased)
   end
 
   it 'should raise error if bad string' do
