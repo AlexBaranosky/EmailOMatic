@@ -11,7 +11,7 @@ describe Reminder do
   MESSAGE_ = 'some message'
 
   it "should give read-only access to its message" do
-    reminder = Reminder.new(MESSAGE_, nil)
+    reminder = Reminder.new(MESSAGE_, nil, 3)
     reminder.message.should == MESSAGE_
     proc { reminder.message = "this fails" }.should raise_error
   end
@@ -19,7 +19,7 @@ describe Reminder do
   it "should give next time to remind for day of the week based reminders" do
     Timecop.freeze(DateTime.civil(2000, 1, 1)) do
       fridays  = Calendar.new(DaysOfWeek.new(:fridays))
-      reminder = Reminder.new(MESSAGE_, fridays)
+      reminder = Reminder.new(MESSAGE_, fridays, 3)
       reminder.to_s.should == "Friday 1/7/2000\nsome message"
     end
   end

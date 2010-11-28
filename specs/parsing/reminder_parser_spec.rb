@@ -20,7 +20,7 @@ describe ReminderParser do
   end
 
   it 'parses lines with no notify X days in advance to the default notification range' do
-    parser.parse("irrelevant-part-of-string\"message\"").should == Reminder.new('message', Calendar.new(DaysOfWeek.new(:sundays)))
+    parser.parse("irrelevant-part-of-string\"message\"").should == Reminder.new('message', Calendar.new(DaysOfWeek.new(:sundays)), 3)
   end
 
   before(:all) { add_equals_method :Calendar, :Reminder, :DaysOfWeek }

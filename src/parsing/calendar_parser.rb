@@ -5,6 +5,7 @@ require File.dirname(__FILE__) + '/../../src/time/calendar'
 require File.dirname(__FILE__) + '/../../src/time/days_of_week'
 require File.dirname(__FILE__) + '/../../src/time/days_of_month'
 require File.dirname(__FILE__) + '/../../src/time/every_x_weeks'
+require File.dirname(__FILE__) + '/../../src/parsing/cannot_parse_exception'
 
 module CalendarParser
   ORDINALS = (1..31).map { |n| ActiveSupport::Inflector::ordinalize n }
@@ -13,7 +14,7 @@ module CalendarParser
     [DayOfWeekBased, DayOfMonthBased, DateBased, EveryXWeeksBased, EveryDayBased].each do |parser|
       return parser.new if parser.can_parse? string
     end
-    raise 'Cannot create calendar parser. String has invalid format.'
+    raise CannotParseException.new "Cannot create calendar parser. String, #{string}, has invalid format."
   end
 
   class MultiTokenedCalendarParser
